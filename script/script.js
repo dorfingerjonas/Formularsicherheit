@@ -1,14 +1,43 @@
+const checkNumber = /[0-9]/g;
+
 function checkInputs() {
   checkFirstName();
-
+  checkLastName();
 }
 
 function checkFirstName() {
   let firstname = document.getElementById('firstname').value;
 
-  let criterion = /[o]/g;
-  let result = firstname.match(criterion);
+  let checkNumber = /[0-9]/g;
 
-  console.log(result);
+  if (checkNumber.test(firstname)) {
+    printError();
+  } else {
+    console.log(firstname);
+  }
+}
 
+function checkLastName() {
+  let lastname = document.getElementById('lastname').value;
+
+  if (checkNumber.test(lastname)) {
+    printError();
+  } else {
+    console.log(lastname);
+  }
+}
+
+
+function checkEmailAdress() {
+  let lastname = document.getElementById('lastname').value;
+
+  if (checkNumber.test(lastname)) {
+    printError();
+  } else {
+    console.log(lastname);
+  }
+}
+
+function printError() {
+  console.error("Fatall Error!");
 }

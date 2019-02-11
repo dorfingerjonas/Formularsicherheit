@@ -1,4 +1,5 @@
 const checkNumber = /[0-9]/g;
+const checkNumber = /^[0-9]/g;
 
 function checkInputs() {
   checkFirstName();
@@ -29,7 +30,10 @@ function checkLastName() {
 
 
 function checkEmailAdress() {
-  let lastname = document.getElementById('lastname').value;
+  let mail = document.getElementById('emailAdress').value;
+  let parts = mail.split('@');
+  let username = parts[0];
+  let provider = parts[1];
 
   if (checkNumber.test(lastname)) {
     printError();

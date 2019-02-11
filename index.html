@@ -4,97 +4,68 @@
     <meta charset="utf-8">
     <title>Formularsicherheit</title>
     <link rel="stylesheet" href="style/style.css">
-    <script src="script/scirpt.js" charset="utf-8"></script>
+    <script src="script/script.js" charset="utf-8"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
   </head>
   <body>
     <h1>Formularsicherheit</h1>
     <h2>Announce aufgeben</h2>
 
-    <p>first name:*</p>
+      <form class="form" action="index.html" method="post">
+        <p>first name:*</p>
 
-    <form class="form" id="firstName" action="index.html" method="post">
-      <input type="text" value="">
-    </form>
+        <input id="firstname" type="text" value="">
 
-    <p>last name:*</p>
+        <p>last name:*</p>
 
-    <form class="form" id="lastName" action="index.html" method="post">
-      <input type="text" value="" required>
-    </form>
+        <input type="text" value="" required>
 
-    <p>E-Mail:*</p>
+        <p>E-Mail:*</p>
 
-    <form class="form" id="email1" action="index.html" method="post">
-    </p>
-      <input type="email" value="">
-    </form>
+        <input type="email" value="">
 
-    <p>repeat E-Mail:*</p>
+        <p>repeat E-Mail:*</p>
 
-    <form class="form" id="email2" action="index.html" method="post">
-      <input type="email" value="">
-    </form>
+        <input type="email" value="">
 
-    <p>phonenumber:*</p>
+        <p>phonenumber:*</p>
 
-    <form class="form" id="phonenumber" action="index.html" method="post">
-      <input type="tel" value="">
-    </form>
+        <input type="tel" value="">
 
-    <p>birthdate:*</p>
+        <p>birthdate:*</p>
 
-    <form class="form" id="birthdate" action="index.html" method="post">
-      <input type="date" value="">
-    </form>
+        <input type="date" value="">
 
-    <br>
+        <br>
 
-    <form class="form" id="gender" action="index.html" method="post">
+        <input name="gender" type="radio" value="male"> male
 
+        <br>
 
-      <input name="gender" type="radio" value="male"> male
+        <input name="gender" type="radio" value="female"> female
 
-      <br>
+        <br>
 
-      <input name="gender" type="radio" value="female"> female
+        <input name="gender" type="radio" value="not defined" checked> not defined
 
-      <br>
+        <p>text to show:*</p>
 
-      <input name="gender" type="radio" value="not defined" checked> not defined
+        <input type="text" name="text" value="" required>
 
-    </form>
+        <p>password:*</p>
 
-    <p>text to show:*</p>
+        <input type="password" name="password" value="">
 
-    <form class="form" id="textToShow" action="index.html" method="post">
-      <input type="text" name="text" value="" required>
-    </form>
+        <p>repeat password:*</p>
 
-    <p>password:*</p>
+        <input type="password" name="" value="">
 
-    <form class="form" id="password1" action="index.html" method="post">
-      <input type="password" name="password" value="">
-    </form>
+        <input type="checkbox" name="agb" value="" required> I accept the AGB.
 
-    <p>repeat password:*</p>
+        <input type="checkbox" name="newsletter" value=""> Yes, I want to subscribe to the weekly E-mail Newsletter.
 
-    <form class="form" id="password2" action="index.html" method="post">
-      <input type="password" name="" value="">
-    </form>
+        <button type="button" name="button" onclick="checkInputs()">submit</button>
+      </form>
 
-    <br>
-
-    <form class="form" id="agb" action="index.html" method="post">
-      <input type="checkbox" name="agb" value="" required> I accept the AGB.
-    </form>
-
-    <form class="form" id="news" action="index.html" method="post">
-      <input type="checkbox" name="newsletter" value=""> Yes, I want to subscribe to the weekly E-mail Newsletter.
-    </form>
-
-    <form class="form" id="submit" action="index.html" method="post">
-      <input type="submit" name="submit" value="">
-    </form>
   </body>
 </html>

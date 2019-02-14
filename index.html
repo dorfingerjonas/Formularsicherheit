@@ -22,31 +22,36 @@
 
         <p>e-mail:*</p>
 
-        <input id="mailAdress" type="email" value="jonas.dorfinger@gmx.at">
+        <input id="mailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
 
         <p>repeat E-Mail:*</p>
 
-        <input id="repeatMailAdress" type="email" value="jonas.dorfinger@gmx.at">
+        <input id="repeatMailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
 
         <p>phonenumber:*</p>
 
-        <input id="phonenumber" type="tel" value="+43 699 16097686">
+        <input id="phonenumber" type="tel" value="+43 699 16097686" required>
 
         <p>birthdate:*</p>
 
-        <input id="birthdate" type="date" value="">
+        <input id="birthdate" type="date" value="2003-06-03" required>
 
         <br>
 
-        <input name="gender" type="radio" value="male"> male
+        <p>gender:*</p>
+
+        <input name="gender" type="radio" value="male">
+        <label for="male">male</label>
 
         <br>
 
-        <input name="gender" type="radio" value="female"> female
+        <input name="gender" type="radio" value="female">
+        <label for="female">female</label>
 
         <br>
 
-        <input name="gender" type="radio" value="not defined" checked> not defined
+        <input name="gender" type="radio" value="not defined" checked>
+        <label for="not defined">not defined</label>
 
         <p>text to show:*</p>
 
@@ -54,19 +59,21 @@
 
         <p>password:*</p>
 
-        <input type="password" name="password" value="">
+        <input type="password" name="password" value="" required>
 
         <p>repeat password:*</p>
 
-        <input type="password" name="" value="">
+        <input type="password" name="" value="" required>
 
         <br><br>
 
-        <input type="checkbox" name="agb" value="" required> I accept the AGB.
+        <input type="checkbox" name="agb" value="acceptAGB" required>
+        <label for="acceptAGB">I accept the AGB.</label>
 
         <br><br>
 
-        <input type="checkbox" name="newsletter" value=""> Yes, I want to subscribe to the weekly E-mail Newsletter.
+        <input type="checkbox" name="newsletter" value="acceptNews">
+        <label for="acceptNews">Yes, I want to subscribe to the weekly E-mail Newsletter.</label>
 
         <br><br>
 

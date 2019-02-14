@@ -9,6 +9,7 @@ function checkInputs() {
   checkEmailAdress();
   compareEmails();
   checkPhonenumber();
+  checkBirthdate();
 
   console.log("\n");
 }
@@ -104,6 +105,60 @@ function checkPhonenumber() {
   } else {
     console.log("Phonenumber: " + number);
   }
+}
+
+function checkBirthdate() {
+let dateOfBirth = document.getElementById('birthdate').value;
+
+  if (dateOfBirth === "") {
+    printError();
+  } else {
+    let age = getCurrentAge(dateOfBirth)
+    if (age >= 14) {
+      console.log("Age: " + age);
+    } else {
+      console.log("Sorry, too young!");
+    }
+  }
+}
+
+function getCurrentAge(dateOfBirth) {
+  const localDate = new Date();
+
+  let date = dateOfBirth.split('-');
+
+  dateOfBirth = new Date(parseInt(date[0]), parseInt(date[2] - 1), parseInt(date[2]));
+
+  let currentAge = localDate.getFullYear() - dateOfBirth.getFullYear();
+
+  if (isMonthLowerThan() || isMonthEqualTo() && isDayLowerThan() || isDayEqualTo()) {
+    return currentAge - 1;
+  }
+
+  function isMonthLowerThan() {
+    if (localDate.getMonth() < dateOfBirth.getMonth()) {
+      return true;
+    }
+  }
+
+  function isMonthEqualTo() {
+    if (localDate.getMonth() === dateOfBirth.getMonth()) {
+      return true;
+    }
+  }
+
+  function isDayLowerThan() {
+    if (localDate.getDay < dateOfBirth.getDay) {
+      return true;
+    }
+  }
+
+  function isDayEqualTo() {
+    if (localDate.getDay === dateOfBirth.getDay) {
+      return true;
+    }
+  }
+
 }
 
 function printError() {

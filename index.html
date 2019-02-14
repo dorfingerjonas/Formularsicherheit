@@ -40,17 +40,17 @@
 
         <p>gender:*</p>
 
-        <input name="gender" type="radio" value="male">
+        <input name="gender" type="radio" id="male" value="male">
         <label for="male">male</label>
 
         <br>
 
-        <input name="gender" type="radio" value="female">
+        <input name="gender" type="radio" id="female" value="female">
         <label for="female">female</label>
 
         <br>
 
-        <input name="gender" type="radio" value="not defined" checked>
+        <input name="gender" type="radio" id="notDefined" value="not defined" checked>
         <label for="not defined">not defined</label>
 
         <p>text to show:*</p>
@@ -59,25 +59,25 @@
 
         <p>password:*</p>
 
-        <input type="password" name="password" value="" required>
+        <input id="password" type="password" name="password" value="" required>
 
         <p>repeat password:*</p>
 
-        <input type="password" name="" value="" required>
+        <input id="repeatPassword" type="password" name="" value="" required>
 
         <br><br>
 
-        <input type="checkbox" name="agb" value="acceptAGB" required>
-        <label for="acceptAGB">I accept the AGB.</label>
+        <input type="checkbox" id="agb" name="agb" value="acceptAGB" required>
+        <label for="acceptAGB">I accept the AGB.*</label>
 
         <br><br>
 
-        <input type="checkbox" name="newsletter" value="acceptNews">
+        <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews">
         <label for="acceptNews">Yes, I want to subscribe to the weekly E-mail Newsletter.</label>
 
         <br><br>
 
-        <button type="button" name="button" onclick="submit()">submit</button>
+        <button type="button" name="button" onclick="checkInputs()">submit</button>
       </form>
 
   </body>

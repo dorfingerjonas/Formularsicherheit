@@ -1,15 +1,18 @@
-const checkName = /[0-9]/g;
-const checkMailUsername = /[^a-zA-Z0-9.]/g;
-const checkMailDomain = /[^a-z.]/g;
-const checkTelnumber = /[^0-9.\/\-+\(\)\´\[\]]/g
+const nameCriterion = /[0-9]/g;
+const usernnameCriterion = /[^a-zA-Z0-9.]/g;
+const domainCriterion = /[^a-z.]/g;
+const phoneCriterion = /[^0-9.\/\-+\(\)\´\[\]]/g
+const passwordCriterion =
 
-function checkInputs() {
+function submit() {
   checkFirstName();
   checkLastName();
   checkEmailAdress();
   compareEmails();
   checkPhonenumber();
   checkBirthdate();
+  getTextToShow();
+  checkPassword();
 
   console.log("\n");
 }
@@ -17,17 +20,17 @@ function checkInputs() {
 function checkFirstName() {
   let firstname = document.getElementById('firstname').value;
 
-  if (checkName.test(firstname)) {
+  if (nameCriterion.test(firstname)) {
     printError();
   } else {
-    console.log("Fisrtname: " + firstname);
+    console.log("Firstname: " + firstname);
   }
 }
 
 function checkLastName() {
   let lastname = document.getElementById('lastname').value;
 
-  if (checkName.test(lastname)) {
+  if (nameCriterion.test(lastname)) {
     printError();
   } else {
     console.log("Lastname: " + lastname);
@@ -47,10 +50,9 @@ function checkEmailAdress() {
 
 function checkUsername(username) {
 
-  if (checkMailUsername.test(username)) {
+  if (usernnameCriterion.test(username)) {
     printError();
   } else {
-    console.log("Username: " + username);
     return true;
   }
 }
@@ -61,10 +63,9 @@ function checkDomain(domain) {
   let provider = parts[0];
   let topLevelDomain = parts[1];
 
-  if (checkMailDomain.test(domain) && istTLDValid(topLevelDomain)) {
+  if (domainCriterion.test(domain) && istTLDValid(topLevelDomain)) {
     printError();
   } else {
-    console.log("Domain: " + domain);
     return true;
   }
 }
@@ -100,7 +101,7 @@ function compareEmails() {
 function checkPhonenumber() {
   let number = document.getElementById('phonenumber').value;
 
-  if (!(checkTelnumber.test(number))) {
+  if (!(phoneCriterion.test(number))) {
     printError();
   } else {
     console.log("Phonenumber: " + number);
@@ -158,6 +159,23 @@ function getCurrentAge(dateOfBirth) {
       return true;
     }
   }
+
+}
+
+function getGender() {
+
+}
+
+function getTextToShow() {
+  let text = document.getElementById('text').value;
+  if (text === "") {
+    printError();
+  } else {
+    console.log("Text: " + text);
+  }
+}
+
+function checkPassword() {
 
 }
 

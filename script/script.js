@@ -1,12 +1,14 @@
-const checkNumber = /[0-9]/g;
+const checkName = /[0-9]/g;
 const checkMailUsername = /[^a-zA-Z0-9.]/g;
 const checkMailDomain = /[^a-z.]/g;
+const checkTelnumber = /[^0-9.\/\-+\(\)\´\[\]]/g
 
 function checkInputs() {
   checkFirstName();
   checkLastName();
   checkEmailAdress();
   compareEmails();
+  checkPhonenumber();
 
   console.log("\n");
 }
@@ -14,7 +16,7 @@ function checkInputs() {
 function checkFirstName() {
   let firstname = document.getElementById('firstname').value;
 
-  if (checkNumber.test(firstname)) {
+  if (checkName.test(firstname)) {
     printError();
   } else {
     console.log("Fisrtname: " + firstname);
@@ -24,7 +26,7 @@ function checkFirstName() {
 function checkLastName() {
   let lastname = document.getElementById('lastname').value;
 
-  if (checkNumber.test(lastname)) {
+  if (checkName.test(lastname)) {
     printError();
   } else {
     console.log("Lastname: " + lastname);
@@ -37,7 +39,7 @@ function checkEmailAdress() {
   let username = parts[0];
   let domain = parts[1];
 
-  if (checkUsername(username) && checkDomain(domain)) {
+  if (checkUsername(username) && checkDomain(domain) && isLongEnough(mailAdress)) {
       console.log("E-Mail: " + mailAdress);
   }
 }
@@ -75,6 +77,14 @@ function istTLDValid(topLevelDomain) {
   }
 }
 
+function isLongEnough(mailAdress) {
+  if (mailAdress.length >= 7) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function compareEmails() {
   let mailAdress = document.getElementById('mailAdress').value;
   let repeatMailAdress = document.getElementById('repeatMailAdress').value;
@@ -83,6 +93,16 @@ function compareEmails() {
     console.log("E-Mail Adresses are equal");
   } else {
     printError();
+  }
+}
+
+function checkPhonenumber() {
+  let number = document.getElementById('phonenumber').value;
+
+  if (!(checkTelnumber.test(number))) {
+    printError();
+  } else {
+    console.log("Phonenumber: " + number);
   }
 }
 

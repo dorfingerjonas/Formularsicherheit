@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Formularsicherheit</title>
@@ -8,77 +8,114 @@
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
   </head>
   <body>
-    <h1>Formularsicherheit</h1>
-    <h2>Announce aufgeben</h2>
+    <h2>Type in data</h2>
 
       <form class="form" action="index.html" method="post">
-        <p>first name:*</p>
 
-        <input id="firstname" type="text" value="Jonas" required>
+        <div id="name">
+          <h2>Please type in your name.</h2>
+          <legend for="firstname" id="firstlabel">firstname:*</legend>
+          <input id="firstname" type="text" value="" required>
 
-        <p>last name:*</p>
+          <br><br>
 
-        <input id="lastname" type="text" value="Dorfinger" required>
+          <legend>lastname:*</legend>
+          <input id="lastname" type="text" value="" required>
+        </div>
 
-        <p>e-mail:*</p>
+        <br><br><br><br>
 
-        <input id="mailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
+        <div id="email">
+          <h2>Please type in your mail adress.</h2>
+          <legend>e-mail:*</legend>
+          <input id="mailAdress" type="email" value="" required>
 
-        <p>repeat E-Mail:*</p>
+          <br><br>
 
-        <input id="repeatMailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
+          <legend>repeat E-Mail:*</legend>
+          <input id="repeatMailAdress" type="email" value="" required>
+        </div>
 
-        <p>phonenumber:*</p>
+        <br><br><br><br>
 
-        <input id="phonenumber" type="tel" value="+43 699 16097686" required>
+        <div id="phone">
+          <h2>Please type in your mobilephone number.</h2>
+          <legend>phonenumber:*</legend>
+          <input id="phonenumber" type="tel" value="" required>
+        </div>
 
-        <p>birthdate:*</p>
+        <br><br><br><br>
 
-        <input id="birthdate" type="date" value="2003-06-03" required>
+        <div id="birthday">
+          <h2>Please type in your birthdate.</h2>
+          <legend>birthdate:*</legend>
+          <input id="birthdate" type="date" value="" required>
+        </div>
 
-        <br>
+        <br><br><br><br>
 
-        <p>gender:*</p>
+        <div id="gender">
+          <h2>Please select your gender.</h2>
+          <input name="gender" type="radio" id="male" value="male">
+          <label for="male">male</label>
 
-        <input name="gender" type="radio" id="male" value="male">
-        <label for="male">male</label>
+          <br>
 
-        <br>
+          <input name="gender" type="radio" id="female" value="female">
+          <label for="female">female</label>
 
-        <input name="gender" type="radio" id="female" value="female">
-        <label for="female">female</label>
+          <br>
 
-        <br>
+          <input name="gender" type="radio" id="notDefined" value="not defined" checked>
+          <label for="notDefined">not defined</label>
+        </div>
 
-        <input name="gender" type="radio" id="notDefined" value="not defined" checked>
-        <label for="not defined">not defined</label>
+        <br><br><br><br>
 
-        <p>text to show:*</p>
+        <div id="textToShow">
+          <h2>Please type in a text.</h2>
+          <legend>text to show:*</legend>
+          <input id="text" type="text" name="text" value="" required>
+        </div>
 
-        <input id="text" type="text" name="text" value="Hello World!" required>
+        <br><br><br><br>
 
-        <p>password:*</p>
+        <!-- TODO: Change ID name of the password field -->
 
-        <input id="password" type="password" name="password" value="" required>
+        <div id="password">
+          <h2>Please type in your password.</h2>
+          <legend>password:*</legend>
+          <input id="password" type="password" name="password" value="" required>
 
-        <p>repeat password:*</p>
+          <br><br>
 
-        <input id="repeatPassword" type="password" name="" value="" required>
+          <legend>repeat password:*</legend>
+          <input id="repeatPassword" type="password" name="" value="" required>
+        </div>
 
-        <br><br>
+        <br><br><br><br>
 
-        <input type="checkbox" id="agb" name="agb" value="acceptAGB" required>
-        <label for="acceptAGB">I accept the AGB.*</label>
+        <div id="checboxes">
+          <h2>Please mark  as appropriate.</h2>
+          <input type="checkbox" id="agb" name="agb" value="acceptAGB" required>
+          <label for="acceptAGB">I accept the AGB.*</label>
 
-        <br><br>
+          <br><br>
 
-        <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews">
-        <label for="acceptNews">Yes, I want to subscribe to the weekly E-mail Newsletter.</label>
+          <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews">
+          <label for="acceptNews">Yes, I want to subscribe to the weekly E-mail Newsletter.</label>
 
-        <br><br>
+          <br><br>
 
-        <button type="button" name="button" onclick="checkInputs()">submit</button>
+          <button type="button" name="button" onclick="checkInputs()">submit</button>
+        </div>
+
       </form>
+
+      <br><br><br><br>
+
+      <button type="button" name="previous">previous</button>
+      <button type="button" name="next">next</button>
 
   </body>
 </html>

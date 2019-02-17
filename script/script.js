@@ -154,13 +154,13 @@ function getCurrentAge(dateOfBirth) {
   }
 
   function isDayLowerThan() {
-    if (localDate.getDay < dateOfBirth.getDay) {
+    if (localDate.getDate() < dateOfBirth.getDate()) {
       return true;
     }
   }
 
   function isDayEqualTo() {
-    if (localDate.getDay === dateOfBirth.getDay) {
+    if (localDate.getDate() === dateOfBirth.getDate()) {
       return true;
     }
   }

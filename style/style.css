@@ -2,8 +2,42 @@ body {
   width: 100vw;
   height: 100vh;
   font-family: 'Ubuntu Condensed', sans-serif;
-  overflow: hidden;
+  overflow: scroll;
 }
+
 input {
-  padding: 5px;
+  font-size: 101%;
+  padding: 10px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+  border: 2px solid darkgray;
+  border-radius: 5px;
 }
+input:focus {
+  border: 2px solid #2196f3;
+}
+
+legend, label {
+  font-size: 125%;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 120%;
+  letter-spacing: 0.1em;
+  transition: all linear 0.2s;
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: darkgray;
+}
+
+/* div {
+  display: flex;
+  justify-content: center;
+} */

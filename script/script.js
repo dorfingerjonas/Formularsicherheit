@@ -9,8 +9,6 @@ let output = "";
 
 function checkInputs() {
 
-  output = "";
-
   if (!checkEmptiness()) {
     checkFirstName();
     checkLastName();
@@ -24,19 +22,17 @@ function checkInputs() {
     comparePasswords();
     checkAGB();
     checkNewsletter();
-  }
 
-  if (output != "") {
-    // let outputhtml = document.getElementById('output').textContent;
-    console.log(output);
+    if (output != "") {
+      // let outputhtml = document.getElementById('output').textContent;
+      console.log("Errors:\n" + output);
 
-    console.log("empty");
+      outputhtml = output;
+    } else {
+      outputhtml = "everything correct";
 
-    outputhtml = output;
-  } else {
-    outputhtml = "everything correct";
-
-    console.log("everything correct");
+      console.log("everything correct");
+    }
   }
 
   console.log("\n");
@@ -255,12 +251,23 @@ function compareEmails() {
 function checkPhonenumber() {
   let number = document.getElementById('phonenumber').value;
 
-  if (!(checkTelnumber.test(number))) {
-    output += "- phonenumber is invalid\n"
+  console.log("Phonenumber length: " + number.length);
+
+  if (!(checkTelnumber.test(number)) &&isPhonenumberLongEnough(number)) {
+    output += "- phonenumber is invalid\n";
+    console.log("number too short");
     return false;
   } else {
     console.log("Phonenumber: " + number);
     return true;
+  }
+}
+
+function isPhonenumberLongEnough(number) {
+  if (number.length < 12) {
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -364,7 +371,6 @@ function isNotDefinedChecked(notDefined) {
   } else {
     return false;
   }
-  output += "test";
 }
 
 function getTextToShow() {
@@ -380,12 +386,9 @@ function getTextToShow() {
 
 function checkPassword() {
   let password = document.getElementById('password').value;
-  console.log(password);
 
-  if (isPasswordLongEnough(password)) {
-    includesLetters(password);
-    includesNumbers(password);
-    includesSpecialChars(password);
+  if (isPasswordLongEnough(password) && includesLetters(password) && includesNumbers(password) && includesSpecialChars(password)) {
+    console.log("Password: " + password);
     return true;
   } else {
     return false;

@@ -4,6 +4,11 @@ body {
   font-family: 'Ubuntu Condensed', sans-serif;
   overflow-y: scroll;
   overflow-x: hidden;
+  /* overflow: hidden; */
+}
+
+h1 {
+  position: absolute;
 }
 
 input {
@@ -30,7 +35,7 @@ button {
   font-size: 120%;
   letter-spacing: 0.1em;
   transition: all linear 0.2s;
-  border-radius: 5px;
+  border-radius: 7px;
 }
 
 button:hover {
@@ -38,7 +43,50 @@ button:hover {
   background-color: darkgray;
 }
 
-/* div {
+form {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
-} */
+  align-items: center;
+  margin: 0 0 0 0;
+  padding: 0;
+}
+
+div {
+  width: 25vw;
+  height: 35vh;
+  border: 1px solid black;
+}
+
+#name {
+
+}
+
+#email {
+  display: none;
+}
+
+#phone {
+  display: none;
+}
+
+#birthday {
+  display: none;
+}
+
+#gender {
+  display: none;
+}
+
+#textToShow {
+  display: none;
+}
+
+#passwordField {
+  display: none;
+}
+
+#checkboxes {
+  display: none;
+}

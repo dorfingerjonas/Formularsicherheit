@@ -6,6 +6,9 @@ const checkLetters = /[a-zA-Z]/g;
 const checkSpecialChars = /[^a-zA-Z0-9]/g;
 
 let output = "";
+let currPosition = 0;
+let state = true;
+let rptState = true;
 
 function checkInputs() {
 
@@ -24,29 +27,21 @@ function checkInputs() {
     checkNewsletter();
 
     if (output != "") {
-      // let outputhtml = document.getElementById('output').textContent;
       console.log("Errors:\n" + output);
-
-      outputhtml = output;
     } else {
-      outputhtml = "everything correct";
-
       console.log("everything correct");
     }
   }
-
   console.log("\n");
 }
 
 function checkEmptiness() {
-
   if (isFirstNameEmpty() && isLastNameEmpty() && isMailEmpty() && isRepeatMailEmpty() &&
-  isPhonenumberEmpty() && isBirthdateEmpty() && isTextToShowEmpty() && isPasswordEmpty() && isRepeatPasswordEmpty() && isAGBSelected()) {
-    // console.log("returned false");
+    isPhonenumberEmpty() && isBirthdateEmpty() && isTextToShowEmpty() && isPasswordEmpty() && isRepeatPasswordEmpty() && isAGBSelected()) {
     return false;
   } else {
-    // console.log("returned true");
     return true;
+    console.log(output);
   }
 }
 
@@ -155,7 +150,8 @@ function isAGBSelected() {
   if (agb) {
     return true;
   } else {
-    console.log("agb");
+    output += "Terms of Service must be accepted\n";
+    console.log("Terms of Service must be accepted");
     return false;
   }
 }
@@ -448,6 +444,44 @@ function comparePasswords() {
   }
 }
 
+function viewPassword() {
+  let password = document.getElementById('password');
+  let stateTrue = document.getElementById('stateTrue');
+  let stateFalse = document.getElementById('stateFalse');
+
+  if (state) {
+    password.type = "text";
+    state = false;
+    stateTrue.style.display = "none";
+    stateFalse.style.display = "inline-block";
+  } else if (!state) {
+    password.type = "password";
+    state = true;
+    stateTrue.style.display = "inline-block";
+    stateFalse.style.display = "none";
+  }
+  console.log("type changed!");
+}
+
+function viewRepeatPassword() {
+  let rptPassword = document.getElementById('repeatPassword');
+  let rptStateTrue = document.getElementById('rptStateTrue');
+  let rptStateFalse = document.getElementById('rptStateFalse');
+
+  if (rptState) {
+    rptPassword.type = "text";
+    rptState = false;
+    rptStateTrue.style.display = "none";
+    rptStateFalse.style.display = "inline-block";
+  } else if (!rptState) {
+    rptPassword.type = "password";
+    rptState = true;
+    rptStateTrue.style.display = "inline-block";
+    rptStateFalse.style.display = "none";
+  }
+  console.log("repeat type changed!");
+}
+
 function checkAGB() {
   let agb = document.getElementById('agb');
 
@@ -471,4 +505,48 @@ function checkNewsletter() {
 
 function printError() {
   console.error("Fatal Error!");
+}
+
+function next() {
+  let name = document.getElementById('name');
+  let email = document.getElementById('email');
+  let phone = document.getElementById('phone');
+  let birthday = document.getElementById('birthday')
+  let gender = document.getElementById('gender');
+  let textToShow = document.getElementById('textToShow');
+  let passwordField = document.getElementById('passwordField');
+  let checkboxes = document.getElementById('checkboxes');
+
+  if (currPosition === 0) {
+    name.style.display = "none";
+    email.style.display = "block";
+    currPosition++;
+  } else if (currPosition === 1) {
+    email.style.display = "none";
+    phone.style.display = "block";
+    currPosition++;
+  } else if (currPosition === 2) {
+    phone.style.display = "none";
+    birthday.style.display = "block";
+    currPosition++;
+  } else if (currPosition === 3) {
+    birthday.style.display = "none";
+    gender.style.display = "block";
+    currPosition++;
+  } else if (currPosition === 4) {
+    gender.style.display = "none";
+    textToShow.style.display = "block";
+    currPosition++;
+  } else if (currPosition === 5) {
+    textToShow.style.display = "none";
+    passwordField.style.display = "block";
+    currPosition++;
+  } else if (currPosition === 6) {
+    passwordField.style.display = "none";
+    checkboxes.style.display = "block";
+  }
+}
+
+function previous() {
+
 }

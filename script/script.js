@@ -5,14 +5,16 @@ const checkTelnumber = /[^0-9.\/\-+\(\)\´\[\]]/g;
 const checkLetters = /[a-zA-Z]/g;
 const checkSpecialChars = /[^a-zA-Z0-9]/g;
 
-let output = "";
+let output;
 let currPosition = 0;
 let state = true;
 let rptState = true;
 
 function checkInputs() {
 
-  if (!checkEmptiness()) {
+  output = "";
+
+  if (!checkEmptiness() && currPosition === 7) {
     checkFirstName();
     checkLastName();
     checkEmailAdress();
@@ -27,9 +29,11 @@ function checkInputs() {
     checkNewsletter();
 
     if (output != "") {
-      console.log("Errors:\n" + output);
+      console.log(output);
+      document.getElementById('output').textContent = output;
     } else {
-      console.log("everything correct");
+      console.log(output);
+      document.getElementById('output').textContent = output;
     }
   }
   console.log("\n");
@@ -40,8 +44,9 @@ function checkEmptiness() {
     isPhonenumberEmpty() && isBirthdateEmpty() && isTextToShowEmpty() && isPasswordEmpty() && isRepeatPasswordEmpty() && isAGBSelected()) {
     return false;
   } else {
-    return true;
     console.log(output);
+    document.getElementById('output').textContent = output;
+    return true;
   }
 }
 
@@ -49,7 +54,7 @@ function isFirstNameEmpty() {
   const firstname = document.getElementById('firstname').value;
 
   if (firstname === "") {
-    console.log("firstname");
+    output += "- firstname is empty\n";
     return false;
   } else {
     return true;
@@ -60,7 +65,7 @@ function isLastNameEmpty() {
   const lastname = document.getElementById('lastname').value;
 
   if (lastname === "") {
-    console.log("lastname");
+    output += "- lastname is empty\n";
     return false;
   } else {
     return true;
@@ -71,8 +76,8 @@ function isMailEmpty() {
   const mail = document.getElementById('mailAdress').value;
 
   if (mail === "") {
+    output += "- mail is empty\n";
     return false;
-    console.log("mail");
   } else {
     return true;
   }
@@ -82,7 +87,7 @@ function isRepeatMailEmpty() {
   const rptmail = document.getElementById('repeatMailAdress').value;
 
   if (rptmail === "") {
-    console.log("rptmail");
+    output += "- repeat email is empty\n";
     return false;
   } else {
     return true;
@@ -93,7 +98,7 @@ function isPhonenumberEmpty() {
   const phonenumber = document.getElementById('phonenumber').value;
 
   if (phonenumber === "") {
-    console.log("phonenumber");
+    output += "- phonenumber is empty\n";
     return false;
   } else {
     return true;
@@ -104,7 +109,7 @@ function isBirthdateEmpty() {
   const birthdate = document.getElementById('birthdate').value;
 
   if (birthdate === "") {
-    console.log("birthdate");
+    output += "- birthdate is not selected\n";
     return false;
   } else {
     return true;
@@ -115,7 +120,7 @@ function isTextToShowEmpty() {
   const text = document.getElementById('text').value;
 
   if (text === "") {
-    console.log("text");
+    output += "- text field is empty\n";
     return false;
   } else {
     return true;
@@ -126,7 +131,7 @@ function isPasswordEmpty() {
   const password = document.getElementById('password').value;
 
   if (password === "") {
-    console.log("password");
+    output += "- password is empty\n";
     return false;
   } else {
     return true;
@@ -137,7 +142,7 @@ function isRepeatPasswordEmpty() {
   const rptPassword = document.getElementById('repeatPassword').value;
 
   if (rptPassword === "") {
-    console.log("rptPassword");
+    output += "- repeat password is empty\n";
     return false;
   } else {
     return true;
@@ -150,8 +155,7 @@ function isAGBSelected() {
   if (agb) {
     return true;
   } else {
-    output += "Terms of Service must be accepted\n";
-    console.log("Terms of Service must be accepted");
+    output += "Terms of Service are not accepted\n";
     return false;
   }
 }
@@ -517,6 +521,10 @@ function next() {
   let passwordField = document.getElementById('passwordField');
   let checkboxes = document.getElementById('checkboxes');
 
+  activatePreviousButton();
+  activateNextButton();
+  deactivateSubmitButton();
+
   if (currPosition === 0) {
     name.style.display = "none";
     email.style.display = "block";
@@ -544,9 +552,109 @@ function next() {
   } else if (currPosition === 6) {
     passwordField.style.display = "none";
     checkboxes.style.display = "block";
+    deactivateNextButton();
+    activateSubmitButton();
+    currPosition++;
+  } else {
+    deactivateNextButton();
+    activateSubmitButton();
   }
+  console.log(currPosition);
 }
 
 function previous() {
+  let name = document.getElementById('name');
+  let email = document.getElementById('email');
+  let phone = document.getElementById('phone');
+  let birthday = document.getElementById('birthday')
+  let gender = document.getElementById('gender');
+  let textToShow = document.getElementById('textToShow');
+  let passwordField = document.getElementById('passwordField');
+  let checkboxes = document.getElementById('checkboxes');
 
+  activatePreviousButton();
+  activateNextButton();
+  deactivateSubmitButton();
+
+  if (currPosition === 7) {
+    passwordField.style.display = "block";
+    checkboxes.style.display = "none";
+    currPosition--;
+  } else if (currPosition === 6) {
+    textToShow.style.display = "block";
+    passwordField.style.display = "none";
+    currPosition--;
+  } else if (currPosition === 5) {
+    gender.style.display = "block";
+    textToShow.style.display = "none";
+    currPosition--;
+  } else if (currPosition === 4) {
+    birthday.style.display = "block";
+    gender.style.display = "none";
+    currPosition--;
+  } else if (currPosition === 3) {
+    phone.style.display = "block";
+    birthday.style.display = "none";
+    currPosition--;
+  } else if (currPosition === 2) {
+    email.style.display = "block";
+    phone.style.display = "none";
+    currPosition--;
+  } else if (currPosition === 1) {
+    name.style.display = "block";
+    email.style.display = "none";
+    deactivatePreviousButton();
+    currPosition--;
+  } else {
+    deactivatePreviousButton();
+  }
+  console.log(currPosition);
+}
+
+function deactivateSubmitButton() {
+    let submit = document.getElementById('submit');
+
+    submit.style.cursor = "not-allowed";
+    submit.style.opacity = "0.5";
+    submit.classList.remove("buttonHover");
+}
+
+function activateSubmitButton() {
+    let submit = document.getElementById('submit');
+
+    submit.style.cursor = "pointer";
+    submit.style.opacity = "1";
+    submit.classList.add("buttonHover");
+}
+
+function deactivateNextButton() {
+    let nextBtn = document.getElementById('nextBtn');
+
+    nextBtn.style.cursor = "not-allowed";
+    nextBtn.style.opacity = "0.5";
+    nextBtn.classList.remove("buttonHover");
+}
+
+function activateNextButton() {
+  let nextBtn = document.getElementById('nextBtn');
+
+  nextBtn.style.cursor = "pointer";
+  nextBtn.style.opacity = "1";
+  nextBtn.classList.add("buttonHover");
+}
+
+function activatePreviousButton() {
+  let previousBtn = document.getElementById('previousBtn');
+
+  previousBtn.style.cursor = "pointer";
+  previousBtn.style.opacity = "1";
+  previousBtn.classList.add("buttonHover");
+}
+
+function deactivatePreviousButton() {
+  let previousBtn = document.getElementById('previousBtn');
+
+  previousBtn.style.cursor = "not-allowed";
+  previousBtn.style.opacity = "0.5";
+  previousBtn.classList.remove("buttonHover");
 }

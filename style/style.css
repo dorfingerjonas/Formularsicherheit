@@ -1,10 +1,7 @@
 body {
-  width: 100vw;
-  height: 100vh;
   font-family: 'Ubuntu Condensed', sans-serif;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  /* overflow: hidden; */
+  overflow: hidden;
+  margin: 0;
 }
 
 h1 {
@@ -13,6 +10,7 @@ h1 {
 
 input {
   font-size: 101%;
+  width: 80%;
   padding: 10px;
   outline: none;
   box-sizing: border-box;
@@ -24,7 +22,13 @@ input:focus {
   border: 2px solid #2196f3;
 }
 
-legend, label {
+legend {
+  font-size: 125%;
+  text-align: left;
+  margin-left: 10%;
+}
+
+label {
   font-size: 125%;
 }
 
@@ -34,15 +38,29 @@ button {
   padding: 10px;
   font-size: 120%;
   letter-spacing: 0.1em;
-  transition: all linear 0.2s;
   border-radius: 7px;
+  background-color: #f4de51;
 }
 
-button:hover {
+.buttonHover {
+  transition: all linear 0.2s;
+}
+.buttonHover:hover {
   cursor: pointer;
-  background-color: darkgray;
+  box-shadow: 0 1px 1px 0 #f4de51,
+              0 1px 3px 1px #f4de51;
 }
 
+.buttonWrapper {
+  width: 100vw;
+  height: 7vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  position: absolute;
+  top: 70vh;
+}
 form {
   width: 100vw;
   height: 100vh;
@@ -51,14 +69,17 @@ form {
   align-items: center;
   margin: 0 0 0 0;
   padding: 0;
+  position: fixed;
+  z-index: -1;
 }
 
 div {
   width: 25vw;
   height: 35vh;
-  border: 1px solid black;
 }
-
+.center {
+  text-align: center;
+}
 #name {
 
 }
@@ -89,4 +110,18 @@ div {
 
 #checkboxes {
   display: none;
+}
+
+#submit {
+  cursor: not-allowed;
+}
+
+#previousBtn {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#output {
+  position: absolute;
+  bottom: 0;
 }

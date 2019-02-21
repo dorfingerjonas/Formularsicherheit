@@ -10,95 +10,130 @@
   </head>
   <body>
 
-    <h1>Type in data</h1>
-
       <form class="form" action="index.html" method="post">
 
         <div id="name">
-          <h2>Please type in your name.</h2>
-          <legend for="firstname" id="firstlabel">firstname:*</legend>
-          <input id="firstname" type="text" value="Jonas" required>
+          <div class="center">
 
-          <legend>lastname:*</legend>
-          <input id="lastname" type="text" value="Dorfinger" required>
+            <h2>Please type in your name.</h2>
+            <legend for="firstname" id="firstlabel">firstname:*</legend>
+            <input id="firstname" type="text" value="Jonas" required>
+
+            <br><br>
+
+            <legend>lastname:*</legend>
+            <input id="lastname" type="text" value="Dorfinger" required>
+
+          </div>
         </div>
 
         <div id="email">
-          <h2>Please type in your mail adress.</h2>
-          <legend>e-mail:*</legend>
-          <input id="mailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
+          <div class="center">
 
-          <legend>repeat E-Mail:*</legend>
-          <input id="repeatMailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
+            <h2>Please type in your mail adress.</h2>
+            <legend>e-mail:*</legend>
+            <input id="mailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
+
+            <legend>repeat E-Mail:*</legend>
+            <input id="repeatMailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
+
+          </div>
         </div>
 
         <div id="phone">
-          <h2>Please type in your mobilephone number.</h2>
-          <legend>phonenumber:*</legend>
-          <input id="phonenumber" type="tel" value="+43 699 / 16097686" required>
+          <div class="center">
+
+            <h2>Please type in your mobilephone number.</h2>
+            <legend>phonenumber:*</legend>
+            <input id="phonenumber" type="tel" value="+43 699 / 16097686" required>
+
+          </div>
         </div>
 
         <div id="birthday">
-          <h2>Please type in your birthdate.</h2>
-          <legend>birthdate:*</legend>
-          <input id="birthdate" type="date" value="2003-06-03" required>
+          <div class="center">
+
+            <h2>Please type in your birthdate.</h2>
+            <legend>birthdate:*</legend>
+            <input id="birthdate" type="date" value="2003-06-03" required>
+
+          </div>
         </div>
 
         <div id="gender">
-          <h2>Please select your gender.</h2>
-          <input name="gender" type="radio" id="male" value="male">
-          <label for="male">male</label>
+          <div class="center">
 
-          <br>
+            <h2>Please select your gender.</h2>
+            <input name="gender" type="radio" id="male" value="male">
+            <label for="male">male</label>
 
-          <input name="gender" type="radio" id="female" value="female">
-          <label for="female">female</label>
+            <br>
 
-          <br>
+            <input name="gender" type="radio" id="female" value="female">
+            <label for="female">female</label>
 
-          <input name="gender" type="radio" id="notDefined" value="not defined" checked>
-          <label for="notDefined">not defined</label>
+            <br>
+
+            <input name="gender" type="radio" id="notDefined" value="not defined" checked>
+            <label for="notDefined">not defined</label>
+
+          </div>
         </div>
 
         <div id="textToShow">
-          <h2>Please type in a text.</h2>
-          <legend>text to show:*</legend>
-          <input id="text" type="text" name="text" value="HelloWorld!" required>
+          <div class="center">
+
+            <h2>Please type in a text.</h2>
+            <legend>text to show:*</legend>
+            <input id="text" type="text" name="text" value="HelloWorld!" required>
+
+          </div>
         </div>
 
         <div id="passwordField">
-          <h2>Please type in your password.</h2>
-          <legend>password:*</legend>
-          <i class='fas fa-eye' onclick="viewPassword()" id="stateTrue" style="display: inline-block"></i>
-          <i class='fas fa-eye-slash' onclick="viewPassword()" id="stateFalse" style="display: none"></i>
-          <input id="password" type="password" name="password" value="Hallo234*" required>
-          <br><br>
+          <div class="center">
 
-          <legend>repeat password:*</legend>
-          <i class='fas fa-eye' onclick="viewRepeatPassword()" id="rptStateTrue" style="display: inline-block"></i>
-          <i class='fas fa-eye-slash' onclick="viewRepeatPassword()" id="rptStateFalse" style="display: none"></i>
-          <input id="repeatPassword" type="password" name="" value="Hallo234*" required>
+            <h2>Please type in your password.</h2>
+            <legend>password:*</legend>
+            <i class='fas fa-eye' onclick="viewPassword()" id="stateTrue" style="display: inline-block"></i>
+            <i class='fas fa-eye-slash' onclick="viewPassword()" id="stateFalse" style="display: none"></i>
+            <input id="password" type="password" name="password" value="Hallo234*" required>
+            <br><br>
+
+            <legend>repeat password:*</legend>
+            <i class='fas fa-eye' onclick="viewRepeatPassword()" id="rptStateTrue" style="display: inline-block"></i>
+            <i class='fas fa-eye-slash' onclick="viewRepeatPassword()" id="rptStateFalse" style="display: none"></i>
+            <input id="repeatPassword" type="password" name="" value="Hallo234*" required>
+
+          </div>
         </div>
 
         <div id="checkboxes">
-          <h2>Please mark  as appropriate.</h2>
-          <input type="checkbox" id="agb" name="agb" value="acceptAGB" required checked>
-          <label for="acceptAGB">I accept the AGB.*</label>
+          <div class="center">
 
-          <br><br>
+            <h2>Please mark  as appropriate.</h2>
+            <input type="checkbox" id="agb" name="agb" value="acceptAGB" required checked>
+            <label for="acceptAGB">I accept the AGB.*</label>
 
-          <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews" checked>
-          <label for="acceptNews">Yes, I want to subscribe to the weekly E-mail Newsletter.</label>
+            <br><br>
 
-          <br><br>
+            <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews" checked>
+            <label for="acceptNews">Yes, I want to subscribe to the weekly E-mail Newsletter.</label>
 
-          <button type="button" name="button" onclick="checkInputs()">submit</button>
+          </div>
         </div>
+
+        <p id="output"></p>
 
       </form>
 
-      <button type="button" name="next" onclick="next()">next</button>
-      <button type="button" name="previous" onclick="previous()">previous</button>
+      <div class="buttonWrapper">
+        <div style="width: 25vw; height: 7vh; display: flex; justify-content: space-between">
+          <button type="button" name="previous" onclick="previous()" id="previousBtn">previous</button>
+          <button type="button" name="button" onclick="checkInputs()" id="submit" style="opacity: 0.5">submit</button>
+          <button type="button" name="next" onclick="next()" id="nextBtn" class="buttonHover">next</button>
+      </div>
+      </div>
 
   </body>
 </html>

@@ -1,11 +1,12 @@
 body {
   font-family: 'Ubuntu Condensed', sans-serif;
+  /* font-family: 'Calibri'; */
   overflow: hidden;
   margin: 0;
 }
 
-h1 {
-  position: absolute;
+h2 {
+  font-family: 'Coming Soon', cursive;
 }
 
 input {
@@ -39,7 +40,8 @@ button {
   font-size: 120%;
   letter-spacing: 0.1em;
   border-radius: 7px;
-  background-color: #f4de51;
+  background-color: #37abe9;
+  user-select: none;
 }
 
 .buttonHover {
@@ -47,8 +49,8 @@ button {
 }
 .buttonHover:hover {
   cursor: pointer;
-  box-shadow: 0 1px 1px 0 #f4de51,
-              0 1px 3px 1px #f4de51;
+  box-shadow: 0 1px 1px 0 #37abe9,
+              0 1px 3px 1px #37abe9;
 }
 
 .buttonWrapper {
@@ -80,6 +82,20 @@ div {
 .center {
   text-align: center;
 }
+
+input [type=checkbox] {
+  text-align: left;
+}
+
+i  {
+  margin-right: -15px;
+  user-select: none;
+}
+
+#passwordField input {
+  margin-left: 15px;
+}
+
 #name {
 
 }

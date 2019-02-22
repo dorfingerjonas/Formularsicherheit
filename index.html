@@ -65,7 +65,6 @@
         </div>
 
         <div id="gender">
-          <div class="center">
 
             <h2>Please select your gender.</h2>
             <input name="gender" type="radio" id="male" value="male">
@@ -81,7 +80,6 @@
             <input name="gender" type="radio" id="notDefined" value="not defined" checked>
             <label for="notDefined">not defined</label>
 
-          </div>
         </div>
 
         <div id="textToShow">
@@ -115,7 +113,6 @@
         </div>
 
         <div id="checkboxes">
-          <div class="center">
 
             <h2>Please mark  as appropriate.</h2>
             <input type="checkbox" id="agb" name="agb" value="acceptAGB" required checked>
@@ -126,7 +123,6 @@
             <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews" checked>
             <label for="acceptNews">Yes, I want to subscribe to the weekly E-mail Newsletter.</label>
 
-          </div>
         </div>
 
         <p id="output"></p>
@@ -134,11 +130,11 @@
       </form>
 
       <div class="buttonWrapper">
-        <div style="width: 25vw; height: 7vh; display: flex; justify-content: space-between">
-          <button type="button" name="previous" onclick="previous()" id="previousBtn">previous</button>
-          <button type="button" name="button" onclick="checkInputs()" id="submit" style="opacity: 0.5">submit</button>
-          <button type="button" name="next" onclick="next()" id="nextBtn" class="buttonHover">next</button>
-      </div>
+        <div style="width: 25vw; height: 7vh; display: flex; justify-content: space-around">
+            <button type="button" name="previous" onclick="previous()" id="previousBtn">previous</button>
+            <button type="button" name="button" onclick="checkInputs()" id="submit" style="opacity: 0.5">submit</button>
+            <button type="button" name="next" onclick="next()" id="nextBtn" class="buttonHover">next</button>
+        </div>
       </div>
 
   </body>

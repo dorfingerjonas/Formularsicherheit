@@ -14,7 +14,7 @@ function checkInputs() {
 
   output = "";
 
-  if (!checkEmptiness() && currPosition === 7) {
+  if (currPosition === 7 && !checkEmptiness()) {
     checkFirstName();
     checkLastName();
     checkEmailAdress();
@@ -38,6 +38,7 @@ function checkInputs() {
   }
   console.log("\n");
 }
+
 
 function checkEmptiness() {
   if (isFirstNameEmpty() && isLastNameEmpty() && isMailEmpty() && isRepeatMailEmpty() &&

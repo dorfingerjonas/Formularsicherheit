@@ -9,6 +9,7 @@ let output;
 let currPosition = 0;
 let state = true;
 let rptState = true;
+let isEmpty = false;
 
 function checkInputs() {
 
@@ -39,10 +40,20 @@ function checkInputs() {
   console.log("\n");
 }
 
-
 function checkEmptiness() {
-  if (isFirstNameEmpty() && isLastNameEmpty() && isMailEmpty() && isRepeatMailEmpty() &&
-    isPhonenumberEmpty() && isBirthdateEmpty() && isTextToShowEmpty() && isPasswordEmpty() && isRepeatPasswordEmpty() && isAGBSelected()) {
+
+  isFirstNameEmpty();
+  isLastNameEmpty();
+  isMailEmpty();
+  isRepeatMailEmpty();
+  isPhonenumberEmpty();
+  isBirthdateEmpty();
+  isTextToShowEmpty();
+  isPasswordEmpty();
+  isRepeatPasswordEmpty();
+  isAGBSelected();
+
+  if (isEmpty) {
     return false;
   } else {
     console.log(output);
@@ -56,9 +67,10 @@ function isFirstNameEmpty() {
 
   if (firstname === "") {
     output += "- firstname is empty\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -67,9 +79,10 @@ function isLastNameEmpty() {
 
   if (lastname === "") {
     output += "- lastname is empty\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -78,9 +91,10 @@ function isMailEmpty() {
 
   if (mail === "") {
     output += "- mail is empty\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -89,9 +103,10 @@ function isRepeatMailEmpty() {
 
   if (rptmail === "") {
     output += "- repeat email is empty\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -100,9 +115,10 @@ function isPhonenumberEmpty() {
 
   if (phonenumber === "") {
     output += "- phonenumber is empty\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -111,9 +127,10 @@ function isBirthdateEmpty() {
 
   if (birthdate === "") {
     output += "- birthdate is not selected\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -122,9 +139,10 @@ function isTextToShowEmpty() {
 
   if (text === "") {
     output += "- text field is empty\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -133,9 +151,10 @@ function isPasswordEmpty() {
 
   if (password === "") {
     output += "- password is empty\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -144,19 +163,21 @@ function isRepeatPasswordEmpty() {
 
   if (rptPassword === "") {
     output += "- repeat password is empty\n";
-    return false;
-  } else {
+    isEmpty = true;
     return true;
+  } else {
+    return false;
   }
 }
 
 function isAGBSelected() {
   const agb = document.getElementById('agb').checked;
 
-  if (agb) {
+  if (!agb) {
+    output += "-Terms of Service are not accepted\n";
+    isEmpty = true;
     return true;
   } else {
-    output += "Terms of Service are not accepted\n";
     return false;
   }
 }
@@ -164,7 +185,7 @@ function isAGBSelected() {
 function checkFirstName() {
   let firstname = document.getElementById('firstname').value;
 
-  if (checkNumbers.test(firstname)) {
+  if (checkNumbers.test(firstname) && !isFirstNameEmpty()) {
     output += "- firstname is invalid\n";
     return false;
   } else {
@@ -176,7 +197,7 @@ function checkFirstName() {
 function checkLastName() {
   let lastname = document.getElementById('lastname').value;
 
-  if (checkNumbers.test(lastname)) {
+  if (checkNumbers.test(lastname) && !isLastNameEmpty()) {
     output += "- lastname is invalid\n";
     return false;
   } else {
@@ -191,7 +212,7 @@ function checkEmailAdress() {
   let username = parts[0];
   let domain = parts[1];
 
-  if (checkUsername(username) && checkDomain(domain) && isEmailAdressLongEnough(mailAdress)) {
+  if (!isMailEmpty() && checkUsername(username) && checkDomain(domain) && isEmailAdressLongEnough(mailAdress)) {
     console.log("E-Mail: " + mailAdress);
     return true;
   } else {
@@ -241,10 +262,11 @@ function compareEmails() {
   let mailAdress = document.getElementById('mailAdress').value;
   let repeatMailAdress = document.getElementById('repeatMailAdress').value;
 
-  if (mailAdress === repeatMailAdress) {
-    console.log("E-Mail Adresses are equal");
+  if (mailAdress === repeatMailAdress && !isMailEmpty() && !isRepeatMailEmpty()) {
+    console.log("e-mail adresses are equal");
     return true;
   } else {
+    console.log("e-mail adresses aren't equal");
     return false;
   }
 }
@@ -254,9 +276,8 @@ function checkPhonenumber() {
 
   console.log("Phonenumber length: " + number.length);
 
-  if (!(checkTelnumber.test(number)) &&isPhonenumberLongEnough(number)) {
+  if (!(checkTelnumber.test(number)) && isPhonenumberLongEnough(number) && !isPhonenumberEmpty()) {
     output += "- phonenumber is invalid\n";
-    console.log("number too short");
     return false;
   } else {
     console.log("Phonenumber: " + number);
@@ -282,7 +303,7 @@ function checkBirthdate() {
     if (age >= 14) {
       console.log("Age: " + age);
       return true;
-    } else if (age <= 14 && age >= 1) {
+    } else if (age <= 14 && age >= 0) {
       console.log("Sorry, too young!");
       output += "- you are too young\n"
       return false;
@@ -376,7 +397,7 @@ function isNotDefinedChecked(notDefined) {
 
 function getTextToShow() {
   let text = document.getElementById('text').value;
-  if (text === "") {
+  if (text === "" || text === " " || text.length < 4) {
     output += "- textToShow is invalid\n"
     return false;
   } else {
@@ -440,7 +461,7 @@ function comparePasswords() {
   let password = document.getElementById('password').value;
   let repeatPassword = document.getElementById('repeatPassword').value;
 
-  if (password === repeatPassword) {
+  if (password === repeatPassword && !isPasswordEmpty() && !isRepeatPasswordEmpty()) {
     console.log("Passwords are equal");
     return true;
   } else {
@@ -494,7 +515,6 @@ function checkAGB() {
     console.log("AGBs accepted!");
     return true;
   } else {
-    output += "-agbs aren't selected\n";
     return false;
   }
 }

@@ -679,3 +679,23 @@ function deactivatePreviousButton() {
   previousBtn.style.opacity = "0.5";
   previousBtn.classList.remove("buttonHover");
 }
+
+function printErrors() {
+  let parts = errorText.split('\n');
+
+  for (let i = 0; i < parts.length; i++) {
+    console.log(parts[i]);
+  }
+}
+
+function changeBorderColor(element) {
+  element.style.borderColor = "red";
+}
+
+function resetBorderColor() {
+  let inputs = document.getElementsByTagName('input');
+
+  for (input of inputs) {
+    input.style.borderColor = "darkgray";
+  }
+}

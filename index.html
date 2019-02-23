@@ -19,12 +19,12 @@
 
             <h2>Please type in your name.</h2>
             <legend for="firstname" id="firstlabel">firstname:*</legend>
-            <input id="firstname" type="text" value="Jonas" required>
+            <input id="firstname" type="text" value="" required>
 
             <br><br>
 
             <legend>lastname:*</legend>
-            <input id="lastname" type="text" value="Dorfinger" required>
+            <input id="lastname" type="text" value="" required>
 
           </div>
         </div>
@@ -34,12 +34,12 @@
 
             <h2>Please type in your mail adress.</h2>
             <legend>e-mail:*</legend>
-            <input id="mailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
+            <input id="mailAdress" type="email" value="" required>
 
             <br><br>
 
             <legend>repeat E-Mail:*</legend>
-            <input id="repeatMailAdress" type="email" value="jonas.dorfinger@gmx.at" required>
+            <input id="repeatMailAdress" type="email" value="" required>
 
           </div>
         </div>
@@ -49,7 +49,7 @@
 
             <h2>Please type in your mobilephone number.</h2>
             <legend>phonenumber:*</legend>
-            <input id="phonenumber" type="tel" value="+43 699 / 16097686" required>
+            <input id="phonenumber" type="tel" value="" required>
 
           </div>
         </div>
@@ -59,7 +59,7 @@
 
             <h2>Please type in your birthdate.</h2>
             <legend>birthdate:*</legend>
-            <input id="birthdate" type="date" value="2003-06-03" required>
+            <input id="birthdate" type="date" value="" required>
 
           </div>
         </div>
@@ -87,7 +87,7 @@
 
             <h2>Please type in a text.</h2>
             <legend>text to show:*</legend>
-            <input id="text" type="text" name="text" value="HelloWorld!" required>
+            <input id="text" type="text" name="text" value="" required>
 
           </div>
         </div>
@@ -98,14 +98,14 @@
             <h2>Please type in your password.</h2>
 
             <legend>password:*</legend>
-            <input id="password" type="password" name="password" value="Hallo234*" required>
+            <input id="password" type="password" name="password" value="" required>
             <i class='fas fa-eye' onclick="viewPassword()" id="stateTrue" style="display: inline-block; font-size: 15px"></i>
             <i class='fas fa-eye-slash' onclick="viewPassword()" id="stateFalse" style="display: none; font-size: 15px"></i>
 
             <br><br>
 
             <legend>repeat password:*</legend>
-            <input id="repeatPassword" type="password" name="" value="Hallo234*" required>
+            <input id="repeatPassword" type="password" name="" value="" required>
             <i class='fas fa-eye' onclick="viewRepeatPassword()" id="rptStateTrue" style="display: inline-block; font-size: 15px"></i>
             <i class='fas fa-eye-slash' onclick="viewRepeatPassword()" id="rptStateFalse" style="display: none; font-size: 15px"></i>
 
@@ -115,17 +115,17 @@
         <div id="checkboxes">
 
             <h2>Please mark  as appropriate.</h2>
-            <input type="checkbox" id="agb" name="agb" value="acceptAGB" required checked>
+            <input type="checkbox" id="agb" name="agb" value="acceptAGB" required>
             <label for="acceptAGB">I have read and accept the <a href="pages/termsOfService.html">Terms of Service</a>.*</label>
 
             <br><br>
 
-            <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews" checked>
+            <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews">
             <label for="acceptNews">I want to subscribe to the e-mail newsletter.</label>
 
         </div>
 
-        <p id="output"></p>
+        <p id="errorText"></p>
 
       </form>
 

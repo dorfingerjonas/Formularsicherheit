@@ -5,39 +5,40 @@ const checkTelnumber = /[^0-9.\/\-+\(\)\´\[\]]/g;
 const checkLetters = /[a-zA-Z]/g;
 const checkSpecialChars = /[^a-zA-Z0-9]/g;
 
-let output;
+let errorText;
 let currPosition = 0;
 let state = true;
 let rptState = true;
 let isEmpty = false;
+let counter = 0;
 
 function checkInputs() {
 
-  output = "";
+  errorText = "";
 
-  if (currPosition === 7 && !checkEmptiness()) {
+  resetBorderColor();
+
+  // if (currPosition === 7 && !checkEmptiness()) {
+  if (currPosition === 7) {
     checkFirstName();
     checkLastName();
     checkEmailAdress();
-    compareEmails();
     checkPhonenumber();
     checkBirthdate();
     getGender();
     getTextToShow();
     checkPassword();
-    comparePasswords();
     checkAGB();
     checkNewsletter();
 
-    if (output != "") {
-      console.log(output);
-      document.getElementById('output').textContent = output;
+    if (errorText != "") {
+      printErrors();
+      // console.log(errorText);
+      // document.getElementById('errorText').textContent = errorText;
     } else {
-      console.log(output);
-      document.getElementById('output').textContent = output;
+      console.log("\n");
     }
   }
-  console.log("\n");
 }
 
 function checkEmptiness() {
@@ -56,17 +57,18 @@ function checkEmptiness() {
   if (isEmpty) {
     return false;
   } else {
-    console.log(output);
-    document.getElementById('output').textContent = output;
+    console.log(errorText);
+    document.getElementById('errorText').textContent = errorText;
     return true;
   }
 }
 
 function isFirstNameEmpty() {
-  const firstname = document.getElementById('firstname').value;
+  const firstname = document.getElementById('firstname');
 
-  if (firstname === "") {
-    output += "- firstname is empty\n";
+  if (firstname.value === "") {
+    errorText += "- firstname is empty\n";
+    changeBorderColor(firstname);
     isEmpty = true;
     return true;
   } else {
@@ -75,10 +77,11 @@ function isFirstNameEmpty() {
 }
 
 function isLastNameEmpty() {
-  const lastname = document.getElementById('lastname').value;
+  const lastname = document.getElementById('lastname');
 
-  if (lastname === "") {
-    output += "- lastname is empty\n";
+  if (lastname.value === "") {
+    errorText += "- lastname is empty\n";
+    changeBorderColor(lastname);
     isEmpty = true;
     return true;
   } else {
@@ -87,10 +90,14 @@ function isLastNameEmpty() {
 }
 
 function isMailEmpty() {
-  const mail = document.getElementById('mailAdress').value;
+  const mail = document.getElementById('mailAdress');
 
-  if (mail === "") {
-    output += "- mail is empty\n";
+  if (mail.value === "") {
+    if (counter === 0) {
+      errorText += "- mail is empty\n";
+      counter++;
+    }
+    changeBorderColor(mail);
     isEmpty = true;
     return true;
   } else {
@@ -99,10 +106,11 @@ function isMailEmpty() {
 }
 
 function isRepeatMailEmpty() {
-  const rptmail = document.getElementById('repeatMailAdress').value;
+  const rptmail = document.getElementById('repeatMailAdress');
 
-  if (rptmail === "") {
-    output += "- repeat email is empty\n";
+  if (rptmail.value === "") {
+    errorText += "- confirmed email is empty\n";
+    changeBorderColor(rptmail);
     isEmpty = true;
     return true;
   } else {
@@ -111,34 +119,11 @@ function isRepeatMailEmpty() {
 }
 
 function isPhonenumberEmpty() {
-  const phonenumber = document.getElementById('phonenumber').value;
+  const phonenumber = document.getElementById('phonenumber');
 
-  if (phonenumber === "") {
-    output += "- phonenumber is empty\n";
-    isEmpty = true;
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function isBirthdateEmpty() {
-  const birthdate = document.getElementById('birthdate').value;
-
-  if (birthdate === "") {
-    output += "- birthdate is not selected\n";
-    isEmpty = true;
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function isTextToShowEmpty() {
-  const text = document.getElementById('text').value;
-
-  if (text === "") {
-    output += "- text field is empty\n";
+  if (phonenumber.value === "") {
+    errorText += "- phonenumber is empty\n";
+    changeBorderColor(phonenumber);
     isEmpty = true;
     return true;
   } else {
@@ -147,10 +132,11 @@ function isTextToShowEmpty() {
 }
 
 function isPasswordEmpty() {
-  const password = document.getElementById('password').value;
+  const password = document.getElementById('password');
 
-  if (password === "") {
-    output += "- password is empty\n";
+  if (password.value === "") {
+    errorText += "- password is empty\n";
+    changeBorderColor(password);
     isEmpty = true;
     return true;
   } else {
@@ -159,10 +145,11 @@ function isPasswordEmpty() {
 }
 
 function isRepeatPasswordEmpty() {
-  const rptPassword = document.getElementById('repeatPassword').value;
+  const rptPassword = document.getElementById('repeatPassword');
 
-  if (rptPassword === "") {
-    output += "- repeat password is empty\n";
+  if (rptPassword.value === "") {
+    errorText += "- confirmed password is empty\n";
+    changeBorderColor(rptPassword);
     isEmpty = true;
     return true;
   } else {
@@ -174,7 +161,7 @@ function isAGBSelected() {
   const agb = document.getElementById('agb').checked;
 
   if (!agb) {
-    output += "-Terms of Service are not accepted\n";
+    errorText += "- Terms of Service are not accepted\n";
     isEmpty = true;
     return true;
   } else {
@@ -185,8 +172,8 @@ function isAGBSelected() {
 function checkFirstName() {
   let firstname = document.getElementById('firstname').value;
 
-  if (checkNumbers.test(firstname) && !isFirstNameEmpty()) {
-    output += "- firstname is invalid\n";
+  if (!isFirstNameEmpty() && checkNumbers.test(firstname)) {
+    errorText += "- firstname is invalid\n";
     return false;
   } else {
     console.log("Firstname: " + firstname);
@@ -197,8 +184,8 @@ function checkFirstName() {
 function checkLastName() {
   let lastname = document.getElementById('lastname').value;
 
-  if (checkNumbers.test(lastname) && !isLastNameEmpty()) {
-    output += "- lastname is invalid\n";
+  if (!isLastNameEmpty() && checkNumbers.test(lastname)) {
+    errorText += "- lastname is invalid\n";
     return false;
   } else {
     console.log("Lastname: " + lastname);
@@ -212,11 +199,14 @@ function checkEmailAdress() {
   let username = parts[0];
   let domain = parts[1];
 
+  isRepeatMailEmpty();
+
   if (!isMailEmpty() && checkUsername(username) && checkDomain(domain) && isEmailAdressLongEnough(mailAdress)) {
     console.log("E-Mail: " + mailAdress);
+    compareEmails();
     return true;
-  } else {
-    output += "- email adress is invalid\n"
+  } else if (!isMailEmpty()) {
+    errorText += "- email adress is invalid\n"
     return false;
   }
 }
@@ -262,11 +252,11 @@ function compareEmails() {
   let mailAdress = document.getElementById('mailAdress').value;
   let repeatMailAdress = document.getElementById('repeatMailAdress').value;
 
-  if (mailAdress === repeatMailAdress && !isMailEmpty() && !isRepeatMailEmpty()) {
+  if (!isRepeatMailEmpty() && !isMailEmpty() && repeatMailAdress === mailAdress) {
     console.log("e-mail adresses are equal");
     return true;
   } else {
-    console.log("e-mail adresses aren't equal");
+    errorText += "- e-mail adresses aren't equal\n";
     return false;
   }
 }
@@ -277,7 +267,7 @@ function checkPhonenumber() {
   console.log("Phonenumber length: " + number.length);
 
   if (!(checkTelnumber.test(number)) && isPhonenumberLongEnough(number) && !isPhonenumberEmpty()) {
-    output += "- phonenumber is invalid\n";
+    errorText += "- phonenumber is invalid\n";
     return false;
   } else {
     console.log("Phonenumber: " + number);
@@ -294,22 +284,24 @@ function isPhonenumberLongEnough(number) {
 }
 
 function checkBirthdate() {
-  let dateOfBirth = document.getElementById('birthdate').value;
+  let dateOfBirth = document.getElementById('birthdate');
 
-  if (dateOfBirth === "") {
+  if (dateOfBirth.value === "") {
+    errorText += "- no birthdate selected\n";
+    changeBorderColor(dateOfBirth);
     return false;
   } else {
-    let age = getCurrentAge(dateOfBirth)
+    let age = getCurrentAge(dateOfBirth.value)
     if (age >= 14) {
       console.log("Age: " + age);
       return true;
     } else if (age <= 14 && age >= 0) {
-      console.log("Sorry, too young!");
-      output += "- you are too young\n"
+      errorText += "- you are too young\n";
+      changeBorderColor(dateOfBirth);
       return false;
     } else {
-      console.log("not born yet");
-      output += "- not born yet\n";
+      errorText += "- not born yet\n";
+      changeBorderColor(dateOfBirth);
       return false;
     }
   }
@@ -396,12 +388,14 @@ function isNotDefinedChecked(notDefined) {
 }
 
 function getTextToShow() {
-  let text = document.getElementById('text').value;
-  if (text === "" || text === " " || text.length < 4) {
-    output += "- textToShow is invalid\n"
+  let text = document.getElementById('text');
+
+  if (text.value === "" || text.value === " " || text.value.length < 4) {
+    errorText += "- textToShow is invalid\n";
+    changeBorderColor(text);
     return false;
   } else {
-    console.log("Text: " + text);
+    console.log("Text: " + text.value);
     return true;
   }
 }
@@ -409,8 +403,11 @@ function getTextToShow() {
 function checkPassword() {
   let password = document.getElementById('password').value;
 
-  if (isPasswordLongEnough(password) && includesLetters(password) && includesNumbers(password) && includesSpecialChars(password)) {
+  isRepeatPasswordEmpty();
+
+  if (!isPasswordEmpty() && isPasswordLongEnough(password) && includesLetters(password) && includesNumbers(password) && includesSpecialChars(password)) {
     console.log("Password: " + password);
+    comparePasswords();
     return true;
   } else {
     return false;
@@ -422,14 +419,14 @@ function isPasswordLongEnough(password) {
   if (password.length >= 8) {
     return true;
   } else {
-    output += "- password isn't long enough\n"
+    errorText += "- password isn't long enough\n"
     return false;
   }
 }
 
 function includesLetters(password) {
   if (!(checkLetters.test(password))) {
-    output += "- password doesn't include letters\n"
+    errorText += "- password doesn't include letters\n"
     return false;
   } else {
     console.log("Password includes letters!");
@@ -439,7 +436,7 @@ function includesLetters(password) {
 
 function includesNumbers(password) {
   if (!(checkNumbers.test(password))) {
-    output += "- password doesn't include numbers\n";
+    errorText += "- password doesn't include numbers\n";
     return false;
   } else {
     console.log("Password includes numbers!");
@@ -449,7 +446,7 @@ function includesNumbers(password) {
 
 function includesSpecialChars(password) {
   if (!(checkSpecialChars.test(password))) {
-    output += "- password doesn't include special characters\n"
+    errorText += "- password doesn't include special characters\n"
     return false;
   } else {
     console.log("Password includes special chars!");
@@ -461,11 +458,11 @@ function comparePasswords() {
   let password = document.getElementById('password').value;
   let repeatPassword = document.getElementById('repeatPassword').value;
 
-  if (password === repeatPassword && !isPasswordEmpty() && !isRepeatPasswordEmpty()) {
-    console.log("Passwords are equal");
+  if (!isRepeatPasswordEmpty() && !isPasswordEmpty() && repeatPassword === password) {
+    console.log("Passwords are equal\n");
     return true;
   } else {
-    output += "- passwords aren't equal\n"
+    errorText += "- passwords aren't equal\n";
     return false;
   }
 }
@@ -515,6 +512,7 @@ function checkAGB() {
     console.log("AGBs accepted!");
     return true;
   } else {
+    errorText += "- Terms of Service are not accepted\n";
     return false;
   }
 }

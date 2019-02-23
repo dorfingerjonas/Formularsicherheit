@@ -528,10 +528,6 @@ function checkNewsletter() {
   }
 }
 
-function printError() {
-  console.error("Fatal Error!");
-}
-
 function next() {
   let name = document.getElementById('name');
   let email = document.getElementById('email');

@@ -676,9 +676,11 @@ function deactivatePreviousButton() {
 
 function printErrors() {
   let parts = errorText.split('\n');
-
+  document.getElementById('errorText').textContent = errorText;
+  
   for (let i = 0; i < parts.length; i++) {
     console.log(parts[i]);
+
   }
 }
 

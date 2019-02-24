@@ -19,12 +19,12 @@
 
             <h2>Please type in your name.</h2>
             <legend for="firstname" id="firstlabel">firstname:*</legend>
-            <input id="firstname" type="text" value="" required>
+            <input id="firstname" type="text" value="" required placeholder="firstname">
 
             <br><br>
 
             <legend>lastname:*</legend>
-            <input id="lastname" type="text" value="" required>
+            <input id="lastname" type="text" value="" required placeholder="lastname">
 
           </div>
         </div>
@@ -34,12 +34,12 @@
 
             <h2>Please type in your mail adress.</h2>
             <legend>e-mail:*</legend>
-            <input id="mailAdress" type="email" value="" required>
+            <input id="mailAdress" type="email" value="" required placeholder="email adress">
 
             <br><br>
 
-            <legend>repeat E-Mail:*</legend>
-            <input id="repeatMailAdress" type="email" value="" required>
+            <legend>confirm E-Mail:*</legend>
+            <input id="repeatMailAdress" type="email" value="" required placeholder="confirm email adress">
 
           </div>
         </div>
@@ -49,7 +49,7 @@
 
             <h2>Please type in your mobilephone number.</h2>
             <legend>phonenumber:*</legend>
-            <input id="phonenumber" type="tel" value="" required>
+            <input id="phonenumber" type="tel" value="" required placeholder="telephonenumber">
 
           </div>
         </div>
@@ -87,7 +87,7 @@
 
             <h2>Please type in a text.</h2>
             <legend>text to show:*</legend>
-            <input id="text" type="text" name="text" value="" required>
+            <input id="text" type="text" name="text" value="" required placeholder="text">
 
           </div>
         </div>
@@ -98,14 +98,14 @@
             <h2>Please type in your password.</h2>
 
             <legend>password:*</legend>
-            <input id="password" type="password" name="password" value="" required>
+            <input id="password" type="password" name="password" value="" required placeholder="password">
             <i class='fas fa-eye' onclick="viewPassword()" id="stateTrue" style="display: inline-block; font-size: 15px"></i>
             <i class='fas fa-eye-slash' onclick="viewPassword()" id="stateFalse" style="display: none; font-size: 15px"></i>
 
             <br><br>
 
-            <legend>repeat password:*</legend>
-            <input id="repeatPassword" type="password" name="" value="" required>
+            <legend>confirm password:*</legend>
+            <input id="repeatPassword" type="password" name="" value="" required placeholder="confirm password">
             <i class='fas fa-eye' onclick="viewRepeatPassword()" id="rptStateTrue" style="display: inline-block; font-size: 15px"></i>
             <i class='fas fa-eye-slash' onclick="viewRepeatPassword()" id="rptStateFalse" style="display: none; font-size: 15px"></i>
 
@@ -125,8 +125,6 @@
 
         </div>
 
-        <p id="errorText"></p>
-
       </form>
 
       <div class="buttonWrapper">
@@ -136,6 +134,8 @@
             <button type="button" name="next" onclick="next()" id="nextBtn" class="buttonHover">next</button>
         </div>
       </div>
+
+      <p id="errorText"></p>
 
   </body>
 </html>

@@ -4,6 +4,7 @@ const checkMailDomain = /[^a-z.]/g;
 const checkTelnumber = /[^0-9.\/\-+\(\)\´\[\]]/g;
 const checkLetters = /[a-zA-Z]/g;
 const checkSpecialChars = /[^a-zA-Z0-9]/g;
+const checkAt = /[@]/g;
 
 let errorText;
 let currPosition = 0;
@@ -195,21 +196,35 @@ function checkLastName() {
 
 function checkEmailAdress() {
   let mailAdress = document.getElementById('mailAdress').value;
-  let parts = mailAdress.split('@');
-  let username = parts[0];
-  let domain = parts[1];
 
-  isRepeatMailEmpty();
+  if (!isMailEmpty() && containsAt(mailAdress)) {
+    let parts = mailAdress.split('@');
+    let username = parts[0];
+    let domain = parts[1];
 
-  if (!isMailEmpty() && checkUsername(username) && checkDomain(domain) && isEmailAdressLongEnough(mailAdress)) {
-    console.log("E-Mail: " + mailAdress);
-    compareEmails();
-    return true;
-  } else if (!isMailEmpty()) {
-    errorText += "- email adress is invalid\n"
-    return false;
+
+
+    if (checkUsername(username) && checkDomain(domain) && isEmailAdressLongEnough(mailAdress)) {
+      console.log("E-Mail: " + mailAdress);
+      compareEmails();
+      return true;
+    } else if (!isMailEmpty()) {
+      errorText += "- email adress is invalid\n"
+      return false;
+    }
   }
+  isRepeatMailEmpty();
 }
+
+ function containsAt(mail) {
+   if (checkAt.test(mail)) {
+     console.log("returnded false: " + checkAt.test(mail));
+     return true;
+   } else {
+     console.log("returnded true: " + checkAt.test(mail));
+     return false;
+   }
+ }
 
 function checkUsername(username) {
   if (checkMailUsername.test(username)) {
@@ -403,16 +418,11 @@ function getTextToShow() {
 function checkPassword() {
   let password = document.getElementById('password').value;
 
-  isRepeatPasswordEmpty();
-
   if (!isPasswordEmpty() && isPasswordLongEnough(password) && includesLetters(password) && includesNumbers(password) && includesSpecialChars(password)) {
     console.log("Password: " + password);
     comparePasswords();
-    return true;
-  } else {
-    return false;
   }
-
+  isRepeatPasswordEmpty();
 }
 
 function isPasswordLongEnough(password) {
@@ -677,10 +687,9 @@ function deactivatePreviousButton() {
 function printErrors() {
   let parts = errorText.split('\n');
   document.getElementById('errorText').textContent = errorText;
-  
+
   for (let i = 0; i < parts.length; i++) {
     console.log(parts[i]);
-
   }
 }
 

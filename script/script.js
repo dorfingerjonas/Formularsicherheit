@@ -216,7 +216,7 @@ function checkEmailAdress() {
   isRepeatMailEmpty();
 }
 
- function containsAt(mail) {
+function containsAt(mail) {
    if (checkAt.test(mail)) {
      console.log("returnded false: " + checkAt.test(mail));
      return true;

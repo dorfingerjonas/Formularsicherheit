@@ -97,6 +97,10 @@ i  {
   margin-left: 15px;
 }
 
+#errorText {
+  line-height: 0.2em;
+}
+
 #name {
 
 }

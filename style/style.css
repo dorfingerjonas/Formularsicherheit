@@ -1,8 +1,8 @@
 body {
   font-family: 'Ubuntu Condensed', sans-serif;
-  /* font-family: 'Calibri'; */
   overflow: hidden;
   margin: 0;
+  z-index: -100000;
 }
 
 h2 {
@@ -19,6 +19,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="date"], 
   border: 2px solid darkgray;
   border-radius: 5px;
 }
+
 input:focus {
   border: 2px solid #2196f3;
 }
@@ -36,11 +37,8 @@ label {
 button {
   border: none;
   outline: none;
-  /* padding: 15px; */
   font-size: 120%;
   border-radius: 7px;
-  /* background-color: #37abe9; */
-  /* background-color: #2d3037; */
   background-color: #3b3f46;
   color: white;
   user-select: none;
@@ -51,6 +49,7 @@ button {
 .buttonHover {
   transition: all linear 0.2s;
 }
+
 .buttonHover:hover {
   cursor: pointer;
   box-shadow: 0 1px 1px 0 #2d3037,
@@ -98,11 +97,13 @@ i  {
 }
 
 #errorText {
-  line-height: 0.2em;
+  line-height: 0em;
+  height: auto;
+  margin-left: 15px;
 }
 
-#name {
-
+#errorText p {
+  display: inline-block;
 }
 
 #email {
@@ -140,9 +141,4 @@ i  {
 #previousBtn {
   cursor: not-allowed;
   opacity: 0.5;
-}
-
-#output {
-  position: absolute;
-  bottom: 0;
 }

@@ -10,7 +10,6 @@ let errorText;
 let currPosition = 0;
 let state = true;
 let rptState = true;
-let isEmpty = false;
 let counter = 0;
 
 function checkInputs() {
@@ -19,26 +18,19 @@ function checkInputs() {
 
   resetBorderColor();
 
-  // if (currPosition === 7 && !checkEmptiness()) {
   if (currPosition === 7) {
     checkFirstName();
     checkLastName();
     checkEmailAdress();
+    checkConfirmedEmailAdress()
     checkPhonenumber();
     checkBirthdate();
     getGender();
     getTextToShow();
     checkPassword();
-    checkAGB();
-    checkNewsletter();
-
-    if (errorText != "") {
-      printErrors();
-      // console.log(errorText);
-      // document.getElementById('errorText').textContent = errorText;
-    } else {
-      console.log("\n");
-    }
+    checkConfirmedPassword();
+    comparePasswords();
+    isAGBSelected();
   }
 }
 
@@ -54,48 +46,40 @@ function checkEmptiness() {
   isPasswordEmpty();
   isRepeatPasswordEmpty();
   isAGBSelected();
-
-  if (isEmpty) {
-    return false;
-  } else {
-    console.log(errorText);
-    document.getElementById('errorText').textContent = errorText;
-    return true;
-  }
 }
 
 function isFirstNameEmpty() {
   const firstname = document.getElementById('firstname');
+  let fn = document.getElementById('fn');
 
-  if (firstname.value === "") {
-    errorText += "- firstname is empty\n";
+  if (firstname.value.length === 0) {
+    fn.style.color = "#ff4f4f"
+    fn.textContent = "empty";
     changeBorderColor(firstname);
-    isEmpty = true;
-    return true;
-  } else {
-    return false;
+    return  true;
   }
 }
 
 function isLastNameEmpty() {
   const lastname = document.getElementById('lastname');
+  let ln = document.getElementById('ln');
 
-  if (lastname.value === "") {
-    errorText += "- lastname is empty\n";
+  if (lastname.value.length === 0) {
+    ln.style.color = "#ff4f4f"
+    ln.textContent = "empty";
     changeBorderColor(lastname);
-    isEmpty = true;
     return true;
-  } else {
-    return false;
   }
 }
 
 function isMailEmpty() {
   const mail = document.getElementById('mailAdress');
+  let em = document.getElementById('em');
 
   if (mail.value === "") {
     if (counter === 0) {
-      errorText += "- mail is empty\n";
+      em.style.color = "#ff4f4f"
+      em.textContent = "empty";
       counter++;
     }
     changeBorderColor(mail);
@@ -108,9 +92,11 @@ function isMailEmpty() {
 
 function isRepeatMailEmpty() {
   const rptmail = document.getElementById('repeatMailAdress');
+  let cem = document.getElementById('cem');
 
   if (rptmail.value === "") {
-    errorText += "- confirmed email is empty\n";
+      cem.style.color = "#ff4f4f"
+      cem.textContent = "empty";
     changeBorderColor(rptmail);
     isEmpty = true;
     return true;
@@ -121,107 +107,135 @@ function isRepeatMailEmpty() {
 
 function isPhonenumberEmpty() {
   const phonenumber = document.getElementById('phonenumber');
+  let pn = document.getElementById('pn');
 
-  if (phonenumber.value === "") {
-    errorText += "- phonenumber is empty\n";
+  if (phonenumber.value.length === 0) {
+    pn.style.color = "#ff4f4f"
+    pn.textContent = "empty";
     changeBorderColor(phonenumber);
-    isEmpty = true;
-    return true;
-  } else {
     return false;
+  } else {
+    return true;
   }
 }
 
 function isPasswordEmpty() {
   const password = document.getElementById('password');
+  let pw = document.getElementById('pw');
 
-  if (password.value === "") {
-    errorText += "- password is empty\n";
+  if (password.value.length === 0) {
+    pw.style.color = "#ff4f4f"
+    pw.textContent = "empty";
     changeBorderColor(password);
-    isEmpty = true;
-    return true;
-  } else {
     return false;
+  } else {
+    return true;
   }
 }
 
 function isRepeatPasswordEmpty() {
   const rptPassword = document.getElementById('repeatPassword');
+  let cpw = document.getElementById('cpw');
 
-  if (rptPassword.value === "") {
-    errorText += "- confirmed password is empty\n";
+  if (rptPassword.value.length === 0) {
+    cpw.style.color = "#ff4f4f"
+    cpw.textContent = "empty";
     changeBorderColor(rptPassword);
-    isEmpty = true;
-    return true;
-  } else {
     return false;
+  } else {
+    return true;
   }
 }
 
 function isAGBSelected() {
   const agb = document.getElementById('agb').checked;
+  let tos = document.getElementById('tos');
 
   if (!agb) {
-    errorText += "- Terms of Service are not accepted\n";
-    isEmpty = true;
-    return true;
+    tos.style.color = "#ff4f4f";
+    tos.textContent = "not accepted";
   } else {
-    return false;
+    tos.style.color = "black";
+    tos.textContent = "accepted";
   }
 }
 
 function checkFirstName() {
   let firstname = document.getElementById('firstname').value;
+  let fn = document.getElementById('fn');
 
   if (!isFirstNameEmpty() && checkNumbers.test(firstname)) {
-    errorText += "- firstname is invalid\n";
-    return false;
-  } else {
-    console.log("Firstname: " + firstname);
-    return true;
+    fn.style.color = "#ff4f4f"
+    fn.textContent = "invalid";
+  } else if (!isFirstNameEmpty()) {
+    fn.style.color = "black"
+    fn.textContent = firstname;
   }
 }
 
 function checkLastName() {
   let lastname = document.getElementById('lastname').value;
+  let ln = document.getElementById('ln');
 
   if (!isLastNameEmpty() && checkNumbers.test(lastname)) {
-    errorText += "- lastname is invalid\n";
-    return false;
-  } else {
-    console.log("Lastname: " + lastname);
-    return true;
+    ln.style.color = "#ff4f4f"
+    ln.textContent = "invalid";
+  } else if (!isLastNameEmpty()) {
+    ln.style.color = "black";
+    ln.textContent = lastname;
   }
 }
 
 function checkEmailAdress() {
   let mailAdress = document.getElementById('mailAdress').value;
+  let em = document.getElementById('em');
 
   if (!isMailEmpty() && containsAt(mailAdress)) {
     let parts = mailAdress.split('@');
     let username = parts[0];
     let domain = parts[1];
 
-
+    compareEmails();
+    isRepeatMailEmpty();
 
     if (checkUsername(username) && checkDomain(domain) && isEmailAdressLongEnough(mailAdress)) {
-      console.log("E-Mail: " + mailAdress);
-      compareEmails();
+      em.style.color = "black"
+      em.textContent = mailAdress;
       return true;
     } else if (!isMailEmpty()) {
-      errorText += "- email adress is invalid\n"
+      em.style.color = "#ff4f4f"
+      em.textContent = "invalid";
       return false;
     }
   }
-  isRepeatMailEmpty();
+}
+
+function checkConfirmedEmailAdress() {
+  let rptMail = document.getElementById('repeatMailAdress').value;
+  let cem = document.getElementById('cem');
+
+  if (!isRepeatMailEmpty() && containsAt(rptMail)) {
+    let parts = rptMail.split('@');
+    let username = parts[0];
+    let domain = parts[1];
+
+    if (checkUsername(username) && checkDomain(domain) && isEmailAdressLongEnough(rptMail)) {
+      cem.style.color = "black"
+      cem.textContent = rptMail;
+    } else if (!isRepeatMailEmpty()) {
+      cem.style.color = "#ff4f4f"
+      cem.textContent = "invalid";
+    }
+  } else {
+    cem.style.color = "#ff4f4f"
+    cem.textContent = "invalid";
+  }
 }
 
 function containsAt(mail) {
    if (checkAt.test(mail)) {
-     console.log("returnded false: " + checkAt.test(mail));
      return true;
    } else {
-     console.log("returnded true: " + checkAt.test(mail));
      return false;
    }
  }
@@ -235,7 +249,6 @@ function checkUsername(username) {
 }
 
 function checkDomain(domain) {
-
   let parts = domain.split('.');
   let provider = parts[0];
   let topLevelDomain = parts[1];
@@ -248,7 +261,7 @@ function checkDomain(domain) {
 }
 
 function istTLDValid(topLevelDomain) {
-  if (topLevelDomain.length <= 3 && topLevelDomain.length >= 2) {
+  if (topLevelDomain.length >= 2) {
     return true;
   } else {
     return false;
@@ -266,32 +279,36 @@ function isEmailAdressLongEnough(mailAdress) {
 function compareEmails() {
   let mailAdress = document.getElementById('mailAdress').value;
   let repeatMailAdress = document.getElementById('repeatMailAdress').value;
+  let coem = document.getElementById('coem');
 
-  if (!isRepeatMailEmpty() && !isMailEmpty() && repeatMailAdress === mailAdress) {
-    console.log("e-mail adresses are equal");
-    return true;
-  } else {
-    errorText += "- e-mail adresses aren't equal\n";
-    return false;
+  if (!isRepeatMailEmpty() && !isMailEmpty()) {
+    if (repeatMailAdress === mailAdress) {
+      coem.style.color = "black";
+      coem.textContent = "equal";
+    } else {
+      coem.style.color = "#ff4f4f";
+      coem.textContent = "not equal";
+    }
   }
 }
 
 function checkPhonenumber() {
   let number = document.getElementById('phonenumber').value;
+  let pn = document.getElementById('pn');
 
-  console.log("Phonenumber length: " + number.length);
-
-  if (!(checkTelnumber.test(number)) && isPhonenumberLongEnough(number) && !isPhonenumberEmpty()) {
-    errorText += "- phonenumber is invalid\n";
-    return false;
-  } else {
-    console.log("Phonenumber: " + number);
-    return true;
+  if (isPhonenumberEmpty()) {
+    if (checkTelnumber.test(number) && isPhonenumberLongEnough(number)) {
+      document.getElementById('pn').style.color = "black";
+      document.getElementById('pn').textContent = number;
+    } else {
+      document.getElementById('pn').style.color = "#ff4f4f";
+      document.getElementById('pn').textContent = "invalid";
+    }
   }
 }
 
 function isPhonenumberLongEnough(number) {
-  if (number.length < 12) {
+  if (number.length >= 12) {
     return true;
   } else {
     return false;
@@ -300,24 +317,26 @@ function isPhonenumberLongEnough(number) {
 
 function checkBirthdate() {
   let dateOfBirth = document.getElementById('birthdate');
+  let bd = document.getElementById('bd');
 
   if (dateOfBirth.value === "") {
-    errorText += "- no birthdate selected\n";
+    bd.style.color = "#ff4f4f";
+    bd.textContent = "empty";
     changeBorderColor(dateOfBirth);
-    return false;
   } else {
     let age = getCurrentAge(dateOfBirth.value)
     if (age >= 14) {
-      console.log("Age: " + age);
-      return true;
+      let parts = dateOfBirth.value.split('-');
+      bd.style.color = "black";
+      bd.textContent = parts[2] + "." + parts[1] + "." + parts[0];
     } else if (age <= 14 && age >= 0) {
-      errorText += "- you are too young\n";
+      bd.style.color = "#ff4f4f";
+      bd.textContent = "too young";
       changeBorderColor(dateOfBirth);
-      return false;
     } else {
-      errorText += "- not born yet\n";
+      bd.style.color = "#ff4f4f";
+      bd.textContent = "invalid";
       changeBorderColor(dateOfBirth);
-      return false;
     }
   }
 }
@@ -365,6 +384,7 @@ function getGender() {
   let male = document.getElementById('male')
   let female = document.getElementById('female');
   let notDefined = document.getElementById('notDefined');
+  let gn = document.getElementById('gn');
 
   if (isMaleChecked(male)) {
     gender = male.value;
@@ -373,9 +393,8 @@ function getGender() {
   } else if (isNotDefinedChecked(notDefined)) {
     gender = notDefined.value;
   }
-  console.log("Gender: " + gender);
-
-  return true;
+  gn.style.color = "black";
+  gn.textContent = gender;
 }
 
 function isMaleChecked(male) {
@@ -404,76 +423,109 @@ function isNotDefinedChecked(notDefined) {
 
 function getTextToShow() {
   let text = document.getElementById('text');
+  let txt = document.getElementById('txt');
 
   if (text.value === "" || text.value === " " || text.value.length < 4) {
-    errorText += "- textToShow is invalid\n";
+    txt.style.color = "#ff4f4f";
+    txt.textContent = "empty";
     changeBorderColor(text);
-    return false;
   } else {
-    console.log("Text: " + text.value);
-    return true;
+    txt.style.color = "black";
+    txt.textContent = text.value;
   }
 }
 
 function checkPassword() {
   let password = document.getElementById('password').value;
+  let pw = document.getElementById('pw');
+  let out = "";
 
-  if (!isPasswordEmpty() && isPasswordLongEnough(password) && includesLetters(password) && includesNumbers(password) && includesSpecialChars(password)) {
-    console.log("Password: " + password);
-    comparePasswords();
+  if (isPasswordEmpty()) {
+    if (isPasswordLongEnough(password) && includesLetters(password)
+        && includesNumbers(password) && includesSpecialChars(password)) {
+      pw.style.color = "black";
+      for (let i = 0; i < password.length; i++) {
+        out += "*";
+      }
+      pw.textContent = out;
+    } else {
+      pw.style.color = "#ff4f4f";
+      pw.textContent = "invalid";
+    }
   }
-  isRepeatPasswordEmpty();
+}
+
+function checkConfirmedPassword() {
+  let repeatPassword = document.getElementById('repeatPassword').value;
+  let cpw = document.getElementById('cpw');
+  let output = "";
+
+  if (isRepeatPasswordEmpty()) {
+    if (isPasswordLongEnough(repeatPassword) && includesLetters(repeatPassword)
+        && includesNumbers(repeatPassword) && includesSpecialChars(repeatPassword)) {
+      cpw.style.color = "black";
+      for (let i = 0; i < repeatPassword.length; i++) {
+        output += "*";
+      }
+      cpw.textContent = output;
+    } else {
+      cpw.style.color = "#ff4f4f";
+      cpw.textContent = "invalid";
+    }
+  }
 }
 
 function isPasswordLongEnough(password) {
   if (password.length >= 8) {
     return true;
   } else {
-    errorText += "- password isn't long enough\n"
     return false;
   }
 }
 
 function includesLetters(password) {
-  if (!(checkLetters.test(password))) {
-    errorText += "- password doesn't include letters\n"
-    return false;
-  } else {
-    console.log("Password includes letters!");
+  let letter = checkLetters.test(password);
+
+  if (letter) {
     return true;
+  } else {
+    return false;
   }
 }
 
 function includesNumbers(password) {
-  if (!(checkNumbers.test(password))) {
-    errorText += "- password doesn't include numbers\n";
-    return false;
-  } else {
-    console.log("Password includes numbers!");
+  let num = checkNumbers.test(password);
+
+  if (num) {
     return true;
+  } else {
+    return false;
   }
 }
 
 function includesSpecialChars(password) {
-  if (!(checkSpecialChars.test(password))) {
-    errorText += "- password doesn't include special characters\n"
-    return false;
-  } else {
-    console.log("Password includes special chars!");
+  let special = checkSpecialChars.test(password);
+
+  if (special) {
     return true;
+  } else {
+    return false;
   }
 }
 
 function comparePasswords() {
   let password = document.getElementById('password').value;
-  let repeatPassword = document.getElementById('repeatPassword').value;
+  let rptPassword = document.getElementById('repeatPassword').value;
+  let copw = document.getElementById('copw');
 
-  if (!isRepeatPasswordEmpty() && !isPasswordEmpty() && repeatPassword === password) {
-    console.log("Passwords are equal\n");
-    return true;
-  } else {
-    errorText += "- passwords aren't equal\n";
-    return false;
+  if (isRepeatPasswordEmpty() && isPasswordEmpty()) {
+    if (rptPassword === password) {
+      copw.style.color = "black";
+      copw.textContent = "equal";
+    } else {
+      copw.style.color = "#ff4f4f";
+      copw.textContent = "not equal";
+    }
   }
 }
 
@@ -493,7 +545,6 @@ function viewPassword() {
     stateTrue.style.display = "inline-block";
     stateFalse.style.display = "none";
   }
-  console.log("type changed!");
 }
 
 function viewRepeatPassword() {
@@ -511,28 +562,6 @@ function viewRepeatPassword() {
     rptState = true;
     rptStateTrue.style.display = "inline-block";
     rptStateFalse.style.display = "none";
-  }
-  console.log("repeat type changed!");
-}
-
-function checkAGB() {
-  let agb = document.getElementById('agb');
-
-  if (agb.checked) {
-    console.log("AGBs accepted!");
-    return true;
-  } else {
-    errorText += "- Terms of Service are not accepted\n";
-    return false;
-  }
-}
-
-function checkNewsletter() {
-  let newsletter = document.getElementById('newsLetter');
-
-  if (newsletter.checked) {
-    console.log("Newsletter requested!");
-    return true;
   }
 }
 
@@ -584,7 +613,6 @@ function next() {
     deactivateNextButton();
     activateSubmitButton();
   }
-  console.log(currPosition);
 }
 
 function previous() {
@@ -633,7 +661,6 @@ function previous() {
   } else {
     deactivatePreviousButton();
   }
-  console.log(currPosition);
 }
 
 function deactivateSubmitButton() {
@@ -682,17 +709,6 @@ function deactivatePreviousButton() {
   previousBtn.style.cursor = "not-allowed";
   previousBtn.style.opacity = "0.5";
   previousBtn.classList.remove("buttonHover");
-}
-
-function printErrors() {
-  let parts = errorText.split('\n');
-  
-  for (let i = 0; i < parts.length; i++) {
-    let p = document.createElement('p');
-    p.textContent = parts[i];
-    document.getElementById('errorText').appendChild(p);
-    console.log(parts[i]);
-  }
 }
 
 function changeBorderColor(element) {

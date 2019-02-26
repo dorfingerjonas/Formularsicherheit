@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet">
     <link rel="icon" type="image/ico" href="img/icon.png">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
   <body>
 
@@ -124,10 +123,6 @@
             <input type="checkbox" id="newsLetter" name="newsletter" value="acceptNews">
             <label for="acceptNews">I want to subscribe to the e-mail newsletter.</label>
 
-            <!-- <form action="?" method="POST">
-              <div class="g-recaptcha" data-sitekey="6Ldls5MUAAAAALS8vTFMzb_HBWMC4fX8mKsaRo1a"></div>
-            </form> -->
-
         </div>
 
       </form>
@@ -140,7 +135,49 @@
         </div>
       </div>
 
-      <div id="errorText"></div>
-      
+
+      <div id="errorWrapper">
+        <div id="errorText">
+          <p>Firstname: </p>
+          <p id="fn">&nbsp;</p>
+          <br>
+          <p>Lastname: </p>
+          <p id="ln">&nbsp;</p>
+          <br>
+          <p>Email: </p>
+          <p id="em">&nbsp;</p>
+          <br>
+          <p>Confirmed Email: </p>
+          <p id="cem">&nbsp;</p>
+          <br>
+          <p>Compare Emails: </p>
+          <p id="coem">&nbsp;</p>
+          <br>
+          <p>Phonenumber: </p>
+          <p id="pn">&nbsp;</p>
+          <br>
+          <p>Birthdate: </p>
+          <p id="bd">&nbsp;</p>
+          <br>
+          <p>Gender: </p>
+          <p id="gn">&nbsp;</p>
+          <br>
+          <p>Text: </p>
+          <p id="txt">&nbsp;</p>
+          <br>
+          <p>Password: </p>
+          <p id="pw">&nbsp;</p>
+          <br>
+          <p>Confirmed Password: </p>
+          <p id="cpw">&nbsp;</p>
+          <br>
+          <p>Compare Passwords: </p>
+          <p id="copw">&nbsp;</p>
+          <br>
+          <p>Terms of Service: </p>
+          <p id="tos">&nbsp;</p>
+        </div>
+      </div>
+
   </body>
 </html>

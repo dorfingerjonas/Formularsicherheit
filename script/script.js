@@ -92,11 +92,9 @@ function isMailEmpty() {
 
 function isRepeatMailEmpty() {
   const rptmail = document.getElementById('repeatMailAdress');
-  let cem = document.getElementById('cem');
+  // let cem = document.getElementById('cem');
 
   if (rptmail.value === "") {
-      cem.style.color = "#ff4f4f"
-      cem.textContent = "empty";
     changeBorderColor(rptmail);
     isEmpty = true;
     return true;
@@ -135,11 +133,8 @@ function isPasswordEmpty() {
 
 function isRepeatPasswordEmpty() {
   const rptPassword = document.getElementById('repeatPassword');
-  let cpw = document.getElementById('cpw');
 
   if (rptPassword.value.length === 0) {
-    cpw.style.color = "#ff4f4f"
-    cpw.textContent = "empty";
     changeBorderColor(rptPassword);
     return false;
   } else {
@@ -207,28 +202,6 @@ function checkEmailAdress() {
       em.textContent = "invalid";
       return false;
     }
-  }
-}
-
-function checkConfirmedEmailAdress() {
-  let rptMail = document.getElementById('repeatMailAdress').value;
-  let cem = document.getElementById('cem');
-
-  if (!isRepeatMailEmpty() && containsAt(rptMail)) {
-    let parts = rptMail.split('@');
-    let username = parts[0];
-    let domain = parts[1];
-
-    if (checkUsername(username) && checkDomain(domain) && isEmailAdressLongEnough(rptMail)) {
-      cem.style.color = "black"
-      cem.textContent = rptMail;
-    } else if (!isRepeatMailEmpty()) {
-      cem.style.color = "#ff4f4f"
-      cem.textContent = "invalid";
-    }
-  } else {
-    cem.style.color = "#ff4f4f"
-    cem.textContent = "invalid";
   }
 }
 
@@ -377,7 +350,6 @@ function getCurrentAge(dateOfBirth) {
       return true;
     }
   }
-
 }
 
 function getGender() {
